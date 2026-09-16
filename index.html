@@ -1136,13 +1136,286 @@
                 animation-duration: 0.01ms !important;
                 transition-duration: 0.01ms !important;
             }
-            #ambient-canvas, #cursor-glow {
-                display: none;
+        /* -------------------------------------------------------------
+           SECRET LOVE GATE (ENTRY LOCK SCREEN OVERLAY)
+        ------------------------------------------------------------- */
+        body.is-locked {
+            overflow: hidden !important;
+            height: 100vh !important;
+            touch-action: none;
+        }
+
+        body.is-locked .site-container,
+        body.is-locked .nav-wrapper,
+        body.is-locked footer,
+        body.is-locked #scroll-progress {
+            filter: blur(28px) brightness(0.65) saturate(0.7);
+            opacity: 0.18;
+            pointer-events: none !important;
+            user-select: none !important;
+            transition: filter 1s cubic-bezier(0.16, 1, 0.3, 1), opacity 1s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .site-container,
+        .nav-wrapper,
+        footer,
+        #scroll-progress {
+            transition: filter 1s cubic-bezier(0.16, 1, 0.3, 1), opacity 1s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .lock-screen-overlay {
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100dvh;
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            background: rgba(9, 7, 12, 0.88);
+            backdrop-filter: blur(35px);
+            -webkit-backdrop-filter: blur(35px);
+            transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.85s;
+        }
+
+        .lock-screen-overlay.unlocked {
+            opacity: 0;
+            transform: scale(1.06);
+            pointer-events: none;
+            visibility: hidden;
+        }
+
+        .lock-card-shell {
+            width: 100%;
+            max-width: 480px;
+            padding: 0.55rem;
+            border-radius: var(--radius-outer);
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-outer);
+            box-shadow: var(--shadow-ambient), 0 0 60px rgba(226, 125, 142, 0.15);
+            animation: lock-card-pop 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes lock-card-pop {
+            0% {
+                opacity: 0;
+                transform: scale(0.92) translateY(20px);
             }
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .lock-card {
+            background: var(--bg-card-inner);
+            border-radius: var(--radius-inner);
+            border: 1px solid var(--border-highlight);
+            padding: 2.8rem 2.2rem;
+            text-align: center;
+            position: relative;
+            box-shadow: var(--shadow-inner);
+        }
+
+        .lock-heart-pulse {
+            width: 76px;
+            height: 76px;
+            border-radius: 50%;
+            margin: 0 auto 1.4rem;
+            background: radial-gradient(circle at 35% 35%, rgba(226, 125, 142, 0.3), rgba(201, 24, 74, 0.15));
+            border: 1px solid rgba(226, 125, 142, 0.4);
+            box-shadow: 0 0 35px rgba(226, 125, 142, 0.35);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: lock-heartbeat 2.2s infinite ease-in-out;
+            font-size: 2rem;
+            transition: transform 0.4s var(--ease-spring), background-color 0.4s ease;
+        }
+
+        @keyframes lock-heartbeat {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 25px rgba(226, 125, 142, 0.25); }
+            50% { transform: scale(1.08); box-shadow: 0 0 45px rgba(226, 125, 142, 0.5); }
+        }
+
+        .lock-badge {
+            font-size: 0.72rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: var(--accent-gold);
+            margin-bottom: 0.75rem;
+            display: inline-block;
+        }
+
+        .lock-title {
+            font-family: var(--font-display);
+            font-size: clamp(1.6rem, 3.5vw, 2.1rem);
+            color: var(--text-primary);
+            line-height: 1.25;
+            margin-bottom: 0.85rem;
+        }
+
+        .lock-desc {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-bottom: 1.75rem;
+            text-wrap: pretty;
+        }
+
+        .lock-form {
+            width: 100%;
+        }
+
+        .lock-input-wrap {
+            position: relative;
+            display: flex;
+            align-items: center;
+            background: rgba(10, 8, 14, 0.75);
+            border: 1px solid var(--border-outer);
+            border-radius: var(--radius-pill);
+            padding: 0.35rem 0.35rem 0.35rem 1.2rem;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .lock-input-wrap:focus-within {
+            border-color: var(--accent-rose);
+            box-shadow: 0 0 0 3px rgba(226, 125, 142, 0.25), 0 0 30px rgba(226, 125, 142, 0.35);
+        }
+
+        .lock-input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            outline: none;
+            color: #ffffff;
+            font-family: var(--font-body);
+            font-size: 1rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            min-width: 0;
+        }
+
+        .lock-input::placeholder {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .lock-submit-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(135deg, #e27d8e, #c9184a);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+            font-family: var(--font-body);
+            font-weight: 600;
+            font-size: 0.9rem;
+            padding: 0.65rem 1.25rem;
+            border-radius: var(--radius-pill);
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(201, 24, 74, 0.4);
+            transition: transform 0.2s var(--ease-spring), box-shadow 0.2s ease, filter 0.2s ease;
+            flex-shrink: 0;
+        }
+
+        .lock-submit-btn:hover {
+            transform: scale(1.04);
+            box-shadow: 0 6px 20px rgba(201, 24, 74, 0.6);
+            filter: brightness(1.1);
+        }
+
+        .lock-submit-btn:active {
+            transform: scale(0.96);
+        }
+
+        .lock-error-msg {
+            min-height: 1.4rem;
+            margin-top: 0.85rem;
+            font-size: 0.82rem;
+            font-weight: 500;
+            color: #ff6b81;
+            transition: opacity 0.3s ease;
+        }
+
+        .lock-hint-footer {
+            margin-top: 1.25rem;
+            padding-top: 1.25rem;
+            border-top: 1px solid var(--border-outer);
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .lock-shake {
+            animation: lock-shake-anim 0.55s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+        }
+
+        @keyframes lock-shake-anim {
+            10%, 90% { transform: translate3d(-3px, 0, 0); }
+            20%, 80% { transform: translate3d(5px, 0, 0); }
+            30%, 50%, 70% { transform: translate3d(-6px, 0, 0); }
+            40%, 60% { transform: translate3d(6px, 0, 0); }
+        }
+
+        .lock-success-pop {
+            animation: lock-success-pulse 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes lock-success-pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.15); filter: drop-shadow(0 0 35px #ff5b79); }
+            100% { transform: scale(1); }
         }
     </style>
 </head>
-<body>
+<body class="is-locked">
+
+    <!-- =============================================================
+         SECRET LOVE GATE (PASSWORD LOCK OVERLAY)
+    ============================================================= -->
+    <div id="lock-screen" class="lock-screen-overlay" role="dialog" aria-modal="true" aria-labelledby="lock-title">
+        <div class="lock-card-shell" id="lock-card-shell">
+            <div class="lock-card">
+                <div class="lock-heart-pulse" id="lock-heart-icon" aria-hidden="true">
+                    <span>🔐</span>
+                </div>
+                <div class="lock-badge">ESPACIO PRIVADO DE NUESTRO AMOR</div>
+                <h2 class="lock-title" id="lock-title">Un Secreto Solo Para Ti</h2>
+                <p class="lock-desc">
+                    Para abrir este cofre de recuerdos, escribe las dos palabras mágicas que guardan la llave de mi corazón:
+                </p>
+
+                <form id="lock-form" class="lock-form" onsubmit="return false;">
+                    <div class="lock-input-wrap">
+                        <input 
+                            type="text" 
+                            id="lock-input" 
+                            class="lock-input" 
+                            placeholder="Escribe la contraseña secreta..." 
+                            autocomplete="off" 
+                            autocorrect="off" 
+                            autocapitalize="words" 
+                            spellcheck="false"
+                            required
+                        >
+                        <button type="submit" id="lock-submit-btn" class="lock-submit-btn" aria-label="Desbloquear">
+                            <span>Entrar</span>
+                            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <p id="lock-error-msg" class="lock-error-msg" aria-live="polite"></p>
+                </form>
+
+                <div class="lock-hint-footer">
+                    <span>💡 Pista: ¿De quién eres? (2 palabras)</span>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Scroll Progress Indicator -->
     <div id="scroll-progress" aria-hidden="true"></div>
@@ -2014,6 +2287,75 @@
                         duration: 1.0,
                         ease: 'power2.out'
                     });
+                });
+            /* 13. SECRET LOVE GATE (PASSCODE UNLOCK: "Solo Tuya") */
+            const lockScreen = document.getElementById('lock-screen');
+            const lockForm = document.getElementById('lock-form');
+            const lockInput = document.getElementById('lock-input');
+            const lockError = document.getElementById('lock-error-msg');
+            const lockCardShell = document.getElementById('lock-card-shell');
+            const lockHeartIcon = document.getElementById('lock-heart-icon');
+
+            if (lockInput) {
+                setTimeout(() => lockInput.focus(), 400);
+            }
+
+            function handleUnlockAttempt() {
+                if (!lockInput) return;
+                const rawVal = lockInput.value.trim();
+                // Normalizar quitando tildes y pasando a minúsculas: "solo tuya"
+                const cleanVal = rawVal.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
+                if (cleanVal === "solo tuya") {
+                    // Éxito: Contraseña correcta
+                    lockError.style.color = '#70e000';
+                    lockError.textContent = '¡Acceso concedido, amor de mi vida! ❤️';
+                    if (lockHeartIcon) {
+                        lockHeartIcon.innerHTML = '<span>💖</span>';
+                        lockHeartIcon.classList.add('lock-success-pop');
+                    }
+
+                    // Celebración de corazones
+                    const cx = window.innerWidth / 2;
+                    const cy = window.innerHeight / 2;
+                    createBurst(cx, cy, 28);
+
+                    setTimeout(() => {
+                        lockScreen.classList.add('unlocked');
+                        document.body.classList.remove('is-locked');
+
+                        // Si la música no está sonando, encender la melodía romántica automáticamente
+                        if (!isMusicPlaying && musicBtn) {
+                            musicBtn.click();
+                        }
+
+                        // Re-activar refresco de GSAP ScrollTriggers
+                        if (window.ScrollTrigger) {
+                            setTimeout(() => ScrollTrigger.refresh(), 300);
+                        }
+                    }, 650);
+
+                } else {
+                    // Contraseña incorrecta: Animación Shake & Feedback
+                    if (lockCardShell) {
+                        lockCardShell.classList.remove('lock-shake');
+                        void lockCardShell.offsetWidth; // Forzar reflown
+                        lockCardShell.classList.add('lock-shake');
+                    }
+                    lockError.style.color = '#ff6b81';
+                    if (!rawVal) {
+                        lockError.textContent = 'Por favor escribe las dos palabras mágicas...';
+                    } else {
+                        lockError.textContent = 'Esa no es la respuesta... Pista: ¿De quién eres? 💭';
+                    }
+                    lockInput.select();
+                }
+            }
+
+            if (lockForm) {
+                lockForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    handleUnlockAttempt();
                 });
             }
 
