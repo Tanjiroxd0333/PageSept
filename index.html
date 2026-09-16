@@ -2296,25 +2296,32 @@
                         ease: 'power2.out'
                     });
                 });
+            }
+
             /* 13. SECRET LOVE GATE (PASSCODE UNLOCK: "Solo Tuya") */
             const lockScreen = document.getElementById('lock-screen');
             const lockForm = document.getElementById('lock-form');
             const lockInput = document.getElementById('lock-input');
+            const lockSubmitBtn = document.getElementById('lock-submit-btn');
             const lockError = document.getElementById('lock-error-msg');
             const lockCardShell = document.getElementById('lock-card-shell');
             const lockHeartIcon = document.getElementById('lock-heart-icon');
 
-            if (lockInput) {
-                setTimeout(() => lockInput.focus(), 400);
-            }
-
             function handleUnlockAttempt() {
                 if (!lockInput) return;
                 const rawVal = lockInput.value.trim();
-                // Normalizar quitando tildes y pasando a minúsculas: "solo tuya"
-                const cleanVal = rawVal.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 
-                if (cleanVal === "solo tuya") {
+                // Normalizar: minúsculas, sin tildes, sin signos ni espacios
+                const norm = rawVal.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+                const stripped = norm.replace(/[^a-z0-9]/g, "");
+
+                // Aceptar con espacio, sin espacio, mayúsculas, minúsculas o variantes
+                const isMatch = stripped === "solotuya" ||
+                                stripped === "solotuyo" ||
+                                stripped === "tuya" ||
+                                (norm.includes("solo") && norm.includes("tuya"));
+
+                if (isMatch) {
                     // Éxito: Contraseña correcta
                     lockError.style.color = '#70e000';
                     lockError.textContent = '¡Acceso concedido, amor de mi vida! ❤️';
@@ -2326,13 +2333,18 @@
                     // Celebración de corazones
                     const cx = window.innerWidth / 2;
                     const cy = window.innerHeight / 2;
-                    createBurst(cx, cy, 28);
+                    createBurst(cx, cy, 30);
 
                     setTimeout(() => {
-                        lockScreen.classList.add('unlocked');
+                        if (lockScreen) {
+                            lockScreen.classList.add('unlocked');
+                            setTimeout(() => {
+                                lockScreen.style.display = 'none';
+                            }, 700);
+                        }
                         document.body.classList.remove('is-locked');
 
-                        // Si la música no está sonando, encender la melodía romántica automáticamente
+                        // Si la música no está sonando, encender la melodía romántica
                         if (!isMusicPlaying && musicBtn) {
                             musicBtn.click();
                         }
@@ -2347,17 +2359,34 @@
                     // Contraseña incorrecta: Animación Shake & Feedback
                     if (lockCardShell) {
                         lockCardShell.classList.remove('lock-shake');
-                        void lockCardShell.offsetWidth; // Forzar reflown
+                        void lockCardShell.offsetWidth; // Forzar reflow
                         lockCardShell.classList.add('lock-shake');
                     }
                     lockError.style.color = '#ff6b81';
                     if (!rawVal) {
-                        lockError.textContent = 'Por favor escribe las dos palabras mágicas...';
+                        lockError.textContent = 'Por favor escribe la clave mágica...';
                     } else {
                         lockError.textContent = 'Esa no es la respuesta... Pista: Instagram 💭';
                     }
                     lockInput.select();
                 }
+            }
+
+            if (lockSubmitBtn) {
+                lockSubmitBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    handleUnlockAttempt();
+                });
+            }
+
+            if (lockInput) {
+                lockInput.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        handleUnlockAttempt();
+                    }
+                });
+                setTimeout(() => lockInput.focus(), 400);
             }
 
             if (lockForm) {
