@@ -1457,8 +1457,8 @@
             </ul>
 
             <div class="nav-actions">
-                <!-- Ambient Web Audio Synthesizer Toggle -->
-                <button id="music-btn" class="icon-btn" title="Música romántica ambiental" aria-label="Música">
+                <!-- Ambient Background Audio Toggle (Juanes - Es Por Ti) -->
+                <button id="music-btn" class="icon-btn" title="Es por ti - Juanes" aria-label="Música de fondo: Juanes - Es por ti">
                     <div class="equalizer-bars">
                         <span class="eq-bar"></span>
                         <span class="eq-bar"></span>
@@ -1834,9 +1834,9 @@
         </div>
     </footer>
 
-    <!-- Audio Element -->
-    <audio id="bg-audio" loop preload="none">
-        <source src="nuestra-cancion.mp3" type="audio/mpeg">
+    <!-- Audio Element (Juanes - Es Por Ti en Bucle) -->
+    <audio id="bg-audio" loop preload="auto">
+        <source src="es-por-ti.mp3" type="audio/mpeg">
     </audio>
 
     <!-- -------------------------------------------------------------
@@ -1850,6 +1850,12 @@
             // Fecha exacta de inicio de la relación (Año-Mes-DíaTHora:Minuto:Segundo)
             anniversaryDate: "2025-03-02T00:00:00",
             anniversaryLabel: "2 de Marzo de 2025",
+
+            // 🎵 Música de fondo en bucle
+            music: {
+                src: "es-por-ti.mp3",
+                title: "Es por ti - Juanes"
+            },
 
             // 📸 FOTOGRAFÍAS EN TARJETAS 3D GIRATORIAS
             // Cada capítulo cuenta con 2 fotos:
@@ -1976,6 +1982,14 @@
             const anniversaryDisplay = document.getElementById('anniversary-display');
             if (anniversaryDisplay) {
                 anniversaryDisplay.textContent = CONFIG.anniversaryLabel;
+            }
+
+            // Audio de Fondo en Bucle (Juanes - Es por ti)
+            const bgAudio = document.getElementById('bg-audio');
+            if (bgAudio) {
+                bgAudio.src = CONFIG.music.src;
+                bgAudio.loop = true;
+                bgAudio.volume = 0.8;
             }
 
             /* 1.1 INTERACCIÓN DE TARJETAS 3D FLIP */
@@ -2206,11 +2220,10 @@
             }
             loop();
 
-            /* 11. WEB AUDIO API SYNTHESIZER */
+            /* 11. WEB AUDIO API SYNTHESIZER & BACKGROUND AUDIO */
             let audioCtx = null;
             let isMusicPlaying = false;
             const musicBtn = document.getElementById('music-btn');
-            const bgAudio = document.getElementById('bg-audio');
 
             const chords = [
                 [349.23, 440.00, 523.25, 659.25], // Fmaj7
