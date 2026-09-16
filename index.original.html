@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para mi Novia</title>
+    <style>
+        :root {
+            --primary-color: #ffb6c1;
+            --secondary-color: #ffe4e1;
+            --text-color: #4a4a4a;
+            --accent-color: #d87093;
+            --white: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: var(--white);
+            text-align: center;
+            padding: 3rem 1rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            font-style: italic;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        .section {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-3px);
+        }
+
+        .section h2 {
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 0.5rem;
+        }
+
+        .section p {
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+
+        .image-placeholder {
+            width: 100%;
+            height: 250px;
+            background-color: #f0f0f0;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #888;
+            font-style: italic;
+            margin-bottom: 1rem;
+            border: 2px dashed var(--primary-color);
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* Relación de aspecto 16:9 */
+            height: 0;
+            background-color: #000;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 1rem;
+        }
+
+        .video-container video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background-color: var(--accent-color);
+            color: var(--white);
+            font-size: 0.9rem;
+            margin-top: 2rem;
+        }
+
+        /* Responsive para celulares */
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 1.8rem;
+            }
+            header p {
+                font-size: 1rem;
+            }
+            .container {
+                padding: 1rem 0.5rem;
+            }
+            .section {
+                padding: 1rem;
+                border-radius: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Nuestra Historia de Amor</h1>
+        <p>Un recorrido por los momentos que nos han unido</p>
+    </header>
+
+    <div class="container">
+        
+        <!-- Sección 1: Conexión en la playa -->
+        <section class="section">
+            <h2>Nuestros Inicios</h2>
+            <div class="image-placeholder">
+                [Foto de nosotros en la playa]
+            </div>
+            <p>Todo comenzó en la playa, un momento mágico donde nuestras miradas se cruzaron por primera vez y el mundo se detuvo para dar inicio a esta hermosa historia.</p>
+        </section>
+
+        <!-- Sección 2: Las hamburguesas -->
+        <section class="section">
+            <h2>Porque contigo todo sabe mejor</h2>
+            <div class="image-placeholder">
+                [Foto de nosotros comiendo hamburguesa]
+            </div>
+            <p>Fuiste tú quien despertó en mí el gusto por las hamburguesas, creando una tradición que nos fue uniendo poco a poco alrededor de cada bocado, haciendo que cada momento juntos sea mucho más especial.</p>
+        </section>
+
+        <!-- Sección 3: La motocicleta -->
+        <section class="section">
+            <h2>Nuevos Caminos Juntos</h2>
+            <div class="image-placeholder">
+                [Foto de nosotros junto a la motocicleta]
+            </div>
+            <p>Gracias a ti sentí ese deseo e inspiración por adquirir mi propio vehículo, para poder movilizarnos y seguir compartiendo momentos memorables recorriendo nuevos caminos a tu lado.</p>
+        </section>
+
+        <!-- Sección 4: Video y Mensaje Final -->
+        <section class="section">
+            <h2>Junto a ti, todo esto fue posible</h2>
+            <div class="video-container">
+                <!-- Reemplaza el enlace de source por tu video real -->
+                <video controls>
+                    <source src="tu-video.mp4" type="video/mp4">
+                    Tu navegador no soporta la reproducción de videos.
+                </video>
+            </div>
+            <p>Cada risa, cada viaje y cada instante a tu lado me demuestra que contigo he encontrado mi lugar favorito en el mundo.</p>
+        </section>
+
+    </div>
+
+    <footer>
+        <p>Hecho con todo el amor para ti ❤️</p>
+    </footer>
+
+</body>
+</html>

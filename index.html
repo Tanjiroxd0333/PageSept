@@ -1,0 +1,2023 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Para el Amor de Mi Vida • Nuestra Historia</title>
+    <meta name="description" content="Un recorrido íntimo, dinámico y cinematográfico por los momentos más hermosos de nuestra historia de amor.">
+
+    <!-- Romantic Heart Favicon & Apple Icon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23ff5b79'/%3E%3Cstop offset='100%25' stop-color='%23c9184a'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath fill='url(%23g)' d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/%3E%3C/svg%3E">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%23140f18'/%3E%3Cpath fill='%23ff5b79' d='M50 82l-5.1-4.7C26.5 60.5 15 50 15 37c0-10.5 8.5-19 19-19 6 0 11.8 2.8 16 7.2 4.2-4.4 10-7.2 16-7.2 10.5 0 19 8.5 19 19 0 13-11.5 23.5-29.9 40.3L50 82z'/%3E%3C/svg%3E">
+    <meta name="theme-color" content="#09070c">
+
+    <!-- Google Fonts: Luxury Serif & Modern Grotesk -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Playfair+Display:ital,wght@0,500;0,700;0,900;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Sacramento&display=swap" rel="stylesheet">
+
+    <!-- GSAP & ScrollTrigger for Elite Motion -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <style>
+        /* -------------------------------------------------------------
+           CSS VARIABLES & DESIGN TOKENS
+        ------------------------------------------------------------- */
+        :root {
+            --bg-base: #09070c;
+            --bg-surface: rgba(20, 15, 25, 0.75);
+            --bg-card-inner: rgba(28, 20, 34, 0.65);
+            --border-outer: rgba(255, 255, 255, 0.09);
+            --border-inner: rgba(226, 125, 142, 0.22);
+            --border-highlight: rgba(255, 255, 255, 0.16);
+
+            --accent-rose: #e27d8e;
+            --accent-rose-glow: rgba(226, 125, 142, 0.45);
+            --accent-gold: #e5b98f;
+            --accent-gold-glow: rgba(229, 185, 143, 0.3);
+
+            --text-primary: #fcf9fa;
+            --text-secondary: #c7b8c4;
+            --text-muted: #847282;
+
+            --shadow-ambient: 0 25px 50px -12px rgba(0, 0, 0, 0.75), 0 0 30px rgba(226, 125, 142, 0.07);
+            --shadow-inner: inset 0 1px 1px rgba(255, 255, 255, 0.15);
+
+            --font-display: 'Playfair Display', Georgia, serif;
+            --font-editorial: 'Cormorant Garamond', Georgia, serif;
+            --font-body: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+            --font-script: 'Sacramento', cursive;
+
+            --radius-outer: 2.25rem;
+            --radius-inner: calc(2.25rem - 0.5rem);
+            --radius-pill: 9999px;
+
+            --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
+            --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        [data-theme="light"] {
+            --bg-base: #faf5f5;
+            --bg-surface: rgba(255, 255, 255, 0.88);
+            --bg-card-inner: rgba(248, 241, 244, 0.78);
+            --border-outer: rgba(180, 130, 145, 0.2);
+            --border-inner: rgba(214, 114, 131, 0.25);
+            --border-highlight: rgba(255, 255, 255, 0.95);
+
+            --accent-rose: #cf4f65;
+            --accent-rose-glow: rgba(207, 79, 101, 0.22);
+            --accent-gold: #b87b46;
+            --accent-gold-glow: rgba(184, 123, 70, 0.18);
+
+            --text-primary: #1f181d;
+            --text-secondary: #574a54;
+            --text-muted: #8c7886;
+
+            --shadow-ambient: 0 20px 45px -12px rgba(180, 120, 140, 0.18), 0 0 25px rgba(207, 79, 101, 0.09);
+            --shadow-inner: inset 0 1px 2px rgba(255, 255, 255, 0.95);
+        }
+
+        /* -------------------------------------------------------------
+           RESET & CORE BASE
+        ------------------------------------------------------------- */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            background-color: var(--bg-base);
+            color: var(--text-primary);
+            font-family: var(--font-body);
+            line-height: 1.65;
+            overflow-x: hidden;
+            min-height: 100dvh;
+            position: relative;
+            transition: background-color 0.4s var(--ease-out), color 0.4s var(--ease-out);
+        }
+
+        ::selection {
+            background: var(--accent-rose);
+            color: #ffffff;
+        }
+
+        /* Ambient Canvas & Noise Texture */
+        #ambient-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0.9;
+        }
+
+        .film-grain {
+            position: fixed;
+            inset: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 2;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        #scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            width: 0%;
+            background: linear-gradient(90deg, var(--accent-gold), var(--accent-rose));
+            z-index: 100;
+            box-shadow: 0 0 12px var(--accent-rose-glow);
+        }
+
+        #cursor-glow {
+            position: fixed;
+            width: 340px;
+            height: 340px;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--accent-rose-glow) 0%, transparent 70%);
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            z-index: 0;
+            filter: blur(45px);
+            opacity: 0.45;
+            transition: opacity 0.3s ease;
+        }
+
+        /* -------------------------------------------------------------
+           FLOATING GLASS ISLAND NAVIGATION
+        ------------------------------------------------------------- */
+        .nav-wrapper {
+            position: fixed;
+            top: 1.25rem;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            z-index: 50;
+            padding: 0 1rem;
+            pointer-events: none;
+        }
+
+        .nav-island {
+            pointer-events: auto;
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            padding: 0.55rem 1.25rem;
+            background: var(--bg-surface);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid var(--border-outer);
+            box-shadow: var(--shadow-ambient);
+            border-radius: var(--radius-pill);
+            transition: transform 0.2s var(--ease-out), border-color 0.3s ease;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.45rem;
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: var(--accent-rose);
+            text-decoration: none;
+        }
+
+        .nav-brand svg {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+            animation: heart-beat 2.2s infinite ease-in-out;
+        }
+
+        @keyframes heart-beat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.22); }
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 1.1rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.82rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .icon-btn {
+            background: transparent;
+            border: 1px solid var(--border-outer);
+            color: var(--text-secondary);
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: transform 0.15s var(--ease-out), background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+        }
+
+        .icon-btn:hover {
+            color: var(--text-primary);
+            border-color: var(--accent-rose);
+            background: rgba(226, 125, 142, 0.12);
+        }
+
+        .icon-btn:active {
+            transform: scale(0.92);
+        }
+
+        .equalizer-bars {
+            display: flex;
+            align-items: flex-end;
+            gap: 2px;
+            height: 13px;
+            width: 13px;
+        }
+
+        .eq-bar {
+            width: 2.5px;
+            background: currentColor;
+            border-radius: 1px;
+            height: 4px;
+        }
+
+        .music-playing .eq-bar:nth-child(1) { animation: eq-play 0.8s infinite ease-in-out alternate; }
+        .music-playing .eq-bar:nth-child(2) { animation: eq-play 1.1s 0.2s infinite ease-in-out alternate; }
+        .music-playing .eq-bar:nth-child(3) { animation: eq-play 0.7s 0.4s infinite ease-in-out alternate; }
+
+        @keyframes eq-play {
+            0% { height: 3px; }
+            100% { height: 13px; }
+        }
+
+        /* -------------------------------------------------------------
+           SITE CONTAINER & HERO SECTION
+        ------------------------------------------------------------- */
+        .site-container {
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 6.5rem 1.5rem 5rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        .hero-section {
+            text-align: center;
+            padding: 3rem 1rem 4.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .eyebrow-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.35rem 1.1rem;
+            border-radius: var(--radius-pill);
+            background: rgba(226, 125, 142, 0.1);
+            border: 1px solid var(--border-inner);
+            color: var(--accent-rose);
+            font-size: 0.73rem;
+            font-weight: 600;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 0 20px var(--accent-rose-glow);
+        }
+
+        .hero-title {
+            font-family: var(--font-display);
+            font-size: clamp(2.8rem, 6.5vw, 4.6rem);
+            font-weight: 700;
+            line-height: 1.12;
+            letter-spacing: -0.025em;
+            max-width: 950px;
+            margin: 0 auto 1.25rem;
+            text-wrap: balance;
+            background: linear-gradient(135deg, var(--text-primary) 35%, var(--accent-rose) 80%, var(--accent-gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-subtitle {
+            font-family: var(--font-editorial);
+            font-size: clamp(1.25rem, 3vw, 1.65rem);
+            font-style: italic;
+            color: var(--text-secondary);
+            max-width: 720px;
+            margin: 0 auto 2.5rem;
+            line-height: 1.45;
+            text-wrap: balance;
+        }
+
+        /* -------------------------------------------------------------
+           LIVE CHRONOMETER HUD (TIME WALKING TOGETHER)
+        ------------------------------------------------------------- */
+        .counter-hud {
+            width: 100%;
+            max-width: 760px;
+            margin: 0 auto 3rem;
+            padding: 0.5rem;
+            border-radius: var(--radius-outer);
+            background: var(--bg-surface);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid var(--border-outer);
+            box-shadow: var(--shadow-ambient);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .counter-hud-inner {
+            background: var(--bg-card-inner);
+            border-radius: var(--radius-inner);
+            border: 1px solid var(--border-highlight);
+            box-shadow: var(--shadow-inner);
+            padding: 1.75rem 1.25rem;
+            text-align: center;
+        }
+
+        .counter-label {
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            color: var(--accent-gold);
+            font-weight: 600;
+            margin-bottom: 1.1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
+        }
+
+        .counter-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.75rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .counter-slot {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.22);
+            padding: 0.85rem 0.5rem;
+            border-radius: 1.15rem;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            transition: transform 0.2s var(--ease-out), border-color 0.2s ease;
+        }
+
+        .counter-slot:hover {
+            transform: translateY(-2px);
+            border-color: var(--accent-rose);
+        }
+
+        [data-theme="light"] .counter-slot {
+            background: rgba(255, 255, 255, 0.65);
+            border-color: rgba(226, 125, 142, 0.15);
+        }
+
+        .counter-num {
+            font-family: var(--font-display);
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            font-weight: 700;
+            color: var(--text-primary);
+            line-height: 1;
+            font-variant-numeric: tabular-nums;
+            margin-bottom: 0.25rem;
+        }
+
+        .counter-unit {
+            font-size: 0.68rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 500;
+        }
+
+        .counter-footer {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+        }
+
+        .counter-footer strong {
+            color: var(--accent-rose);
+            margin-left: 0.35rem;
+        }
+
+        /* -------------------------------------------------------------
+           DYNAMIC ASYMMETRICAL STORY JOURNEY (ZIG-ZAG)
+        ------------------------------------------------------------- */
+        .story-journey {
+            display: flex;
+            flex-direction: column;
+            gap: 4.5rem;
+            position: relative;
+            margin-bottom: 5rem;
+        }
+
+        /* Central Glowing Lifeline Ribbon */
+        .story-journey::before {
+            content: '';
+            position: absolute;
+            top: 3rem;
+            bottom: 3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            background: linear-gradient(180deg, transparent, var(--border-inner) 10%, var(--accent-rose-glow) 50%, var(--border-inner) 90%, transparent);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* 3D Tilt Card Shell */
+        .story-card {
+            position: relative;
+            z-index: 1;
+            padding: 0.6rem;
+            border-radius: var(--radius-outer);
+            background: var(--bg-surface);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid var(--border-outer);
+            box-shadow: var(--shadow-ambient);
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .story-card:hover {
+            border-color: var(--border-inner);
+            box-shadow: 0 30px 65px -15px rgba(0, 0, 0, 0.8), 0 0 35px var(--accent-rose-glow);
+        }
+
+        .story-inner {
+            background: var(--bg-card-inner);
+            border-radius: var(--radius-inner);
+            border: 1px solid var(--border-highlight);
+            box-shadow: var(--shadow-inner);
+            padding: 2.5rem 2.25rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Dynamic Glare Specular Highlight Overlay */
+        .card-glare {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 255, 255, 0.1) 0%, transparent 60%);
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .story-card:hover .card-glare {
+            opacity: 1;
+        }
+
+        /* Alternating Asymmetric Split Grid */
+        .story-split-grid {
+            display: grid;
+            grid-template-columns: 1.15fr 1fr;
+            gap: 2.75rem;
+            align-items: center;
+        }
+
+        .story-split-grid.reversed {
+            grid-template-columns: 1fr 1.15fr;
+        }
+
+        .story-split-grid.reversed .story-content-side {
+            order: 2;
+        }
+
+        .story-split-grid.reversed .story-media-side {
+            order: 1;
+        }
+
+        /* Meta Tag Headings */
+        .chapter-meta-tag {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            margin-bottom: 0.85rem;
+        }
+
+        .chapter-pill {
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--accent-rose);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .chapter-pill::before {
+            content: '';
+            display: inline-block;
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--accent-rose);
+            box-shadow: 0 0 10px var(--accent-rose);
+        }
+
+        .chapter-badge {
+            font-size: 0.7rem;
+            padding: 0.22rem 0.7rem;
+            border-radius: var(--radius-pill);
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: var(--text-muted);
+        }
+
+        .chapter-title {
+            font-family: var(--font-display);
+            font-size: clamp(1.6rem, 3.2vw, 2.3rem);
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 1.2rem;
+            letter-spacing: -0.015em;
+        }
+
+        .chapter-text {
+            font-size: 1.05rem;
+            line-height: 1.75;
+            color: var(--text-secondary);
+            margin-bottom: 1.25rem;
+            text-wrap: pretty;
+        }
+
+        .chapter-quote {
+            font-family: var(--font-editorial);
+            font-size: 1.25rem;
+            font-style: italic;
+            color: var(--accent-gold);
+            border-left: 2px solid var(--accent-gold);
+            padding-left: 1.25rem;
+            margin: 1.25rem 0 1.5rem;
+            line-height: 1.45;
+        }
+
+        /* -------------------------------------------------------------
+           3D FLIP CARD PHOTO STAGE (EMIL KOWALSKI MOTION & TACTILE DEPTH)
+        ------------------------------------------------------------- */
+        .flip-card-stage {
+            position: relative;
+            width: 100%;
+            height: 390px;
+            perspective: 1400px;
+            cursor: pointer;
+            user-select: none;
+            outline: none;
+            border-radius: 1.5rem;
+            transform: translateZ(0);
+        }
+
+        .flip-card-stage:focus-visible {
+            box-shadow: 0 0 0 3px var(--accent-rose), 0 0 25px var(--accent-rose-glow);
+        }
+
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            border-radius: 1.5rem;
+            transition: transform 0.85s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+            transform-style: preserve-3d;
+            -webkit-transform-style: preserve-3d;
+        }
+
+        .flip-card-stage:hover .flip-card-inner {
+            transform: scale3d(1.012, 1.012, 1.012);
+        }
+
+        .flip-card-stage.is-flipped .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-card-stage.is-flipped:hover .flip-card-inner {
+            transform: rotateY(180deg) scale3d(1.012, 1.012, 1.012);
+        }
+
+        .flip-card-face {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            background: #140f18;
+            border: 1px solid var(--border-outer);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            display: flex;
+            flex-direction: column;
+            will-change: transform;
+        }
+
+        .flip-card-front {
+            z-index: 2;
+            transform: rotateY(0deg);
+        }
+
+        .flip-card-back {
+            transform: rotateY(180deg);
+            border-color: var(--border-inner);
+            box-shadow: 0 22px 50px rgba(0, 0, 0, 0.6), 0 0 30px var(--accent-rose-glow);
+        }
+
+        .flip-card-face img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            transition: transform 0.7s var(--ease-out), filter 0.5s ease;
+            filter: brightness(0.92) contrast(1.04);
+            pointer-events: none;
+        }
+
+        #img-beach-front, #polaroid-img-1 {
+            object-position: center 68%;
+        }
+
+        .flip-card-stage:hover .flip-card-face img {
+            transform: scale(1.04);
+            filter: brightness(0.98) contrast(1.02);
+        }
+
+        .flip-hint-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(18, 14, 22, 0.82);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            color: var(--text-primary);
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 0.45rem 0.95rem;
+            border-radius: var(--radius-pill);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+            transition: transform 0.3s var(--ease-spring), background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+            z-index: 5;
+            pointer-events: none;
+        }
+
+        .flip-card-stage:hover .flip-hint-badge {
+            transform: scale(1.05) translateY(-1px);
+            background: rgba(226, 125, 142, 0.22);
+            border-color: var(--accent-rose);
+            color: #ffffff;
+        }
+
+        .flip-badge-icon {
+            font-size: 0.85rem;
+            display: inline-block;
+            transition: transform 0.6s var(--ease-spring);
+        }
+
+        .flip-card-stage:hover .flip-badge-icon {
+            transform: rotate(180deg);
+        }
+
+        .photo-vignette {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(9, 7, 12, 0.05) 0%, rgba(9, 7, 12, 0.6) 100%);
+            pointer-events: none;
+        }
+
+        .photo-tag-overlay {
+            position: absolute;
+            bottom: 1rem;
+            left: 1rem;
+            background: rgba(18, 14, 22, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            padding: 0.45rem 1rem;
+            border-radius: var(--radius-pill);
+            display: flex;
+            align-items: center;
+            gap: 0.45rem;
+            font-size: 0.78rem;
+            font-weight: 500;
+            color: #fff;
+            pointer-events: none;
+            z-index: 4;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Reaction Bar */
+        .reaction-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 1.25rem;
+            border-top: 1px solid var(--border-outer);
+        }
+
+        .heart-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(226, 125, 142, 0.1);
+            border: 1px solid var(--border-inner);
+            color: var(--accent-rose);
+            padding: 0.45rem 1rem;
+            border-radius: var(--radius-pill);
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.15s var(--ease-out), background-color 0.2s ease;
+        }
+
+        .heart-btn:hover {
+            background: rgba(226, 125, 142, 0.2);
+            transform: translateY(-1px);
+        }
+
+        .heart-btn:active {
+            transform: scale(0.94);
+        }
+
+        .heart-btn svg {
+            width: 14px;
+            height: 14px;
+            fill: currentColor;
+        }
+
+        /* -------------------------------------------------------------
+           INTERACTIVE POLAROID SCRAPBOOK (FAN-OUT DECK)
+        ------------------------------------------------------------- */
+        .scrapbook-section {
+            margin: 5rem 0 6rem;
+            text-align: center;
+        }
+
+        .section-headline-group {
+            margin-bottom: 3.5rem;
+        }
+
+        .section-kicker {
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--accent-gold);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-headline {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 4.5vw, 3rem);
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .polaroid-deck {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+            min-height: 430px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .polaroid-card {
+            position: absolute;
+            width: 290px;
+            background: #ffffff;
+            color: #1a1a1a;
+            padding: 1rem 1rem 1.8rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45), 0 0 15px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            transition: transform 0.5s var(--ease-spring), box-shadow 0.3s ease;
+            user-select: none;
+            transform-origin: center center;
+        }
+
+        .polaroid-card:hover {
+            box-shadow: 0 28px 55px rgba(0, 0, 0, 0.6), 0 0 25px var(--accent-rose-glow);
+            z-index: 30 !important;
+        }
+
+        .polaroid-photo-box {
+            width: 100%;
+            height: 250px;
+            border-radius: 0.4rem;
+            overflow: hidden;
+            background: #000;
+            margin-bottom: 0.85rem;
+        }
+
+        .polaroid-photo-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .polaroid-caption {
+            font-family: var(--font-script);
+            font-size: 1.6rem;
+            text-align: center;
+            color: #2b2b2b;
+            line-height: 1.2;
+        }
+
+        .deck-pos-1 { transform: rotate(-8deg) translateX(-180px); z-index: 10; }
+        .deck-pos-2 { transform: rotate(2deg) translateY(-15px); z-index: 20; }
+        .deck-pos-3 { transform: rotate(10deg) translateX(180px); z-index: 10; }
+
+        .polaroid-deck:hover .deck-pos-1 { transform: rotate(-14deg) translateX(-230px); }
+        .polaroid-deck:hover .deck-pos-2 { transform: rotate(0deg) translateY(-25px); }
+        .polaroid-deck:hover .deck-pos-3 { transform: rotate(16deg) translateX(230px); }
+
+        .deck-instruction {
+            margin-top: 2rem;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* -------------------------------------------------------------
+           CHAPTER 4: CINEMA VIDEO THEATER
+        ------------------------------------------------------------- */
+        .cinema-theater-box {
+            position: relative;
+            width: 100%;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            background: #000;
+            border: 1px solid var(--border-inner);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 35px var(--accent-rose-glow);
+            margin-bottom: 1.5rem;
+        }
+
+        .cinema-theater-box video {
+            width: 100%;
+            height: auto;
+            max-height: 540px;
+            display: block;
+            object-fit: cover;
+        }
+
+        /* -------------------------------------------------------------
+           SEALED LOVE LETTER (3D WAX ENVELOPE)
+        ------------------------------------------------------------- */
+        .letter-section {
+            margin: 6rem 0 4rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .envelope-shell {
+            width: 100%;
+            max-width: 760px;
+            padding: 0.65rem;
+            border-radius: var(--radius-outer);
+            background: var(--bg-surface);
+            backdrop-filter: blur(24px);
+            border: 1px solid var(--border-outer);
+            box-shadow: var(--shadow-ambient);
+        }
+
+        .envelope-card {
+            background: var(--bg-card-inner);
+            border-radius: var(--radius-inner);
+            border: 1px solid var(--border-highlight);
+            padding: 2.75rem 2rem;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .wax-seal-icon {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 35% 35%, #e27d8e, #851c34);
+            box-shadow: 0 10px 30px rgba(133, 28, 52, 0.6), inset 0 2px 4px rgba(255, 255, 255, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.25rem;
+            color: #ffffff;
+            font-size: 1.6rem;
+            border: 2px solid rgba(255, 255, 255, 0.25);
+            transition: transform 0.4s var(--ease-spring), box-shadow 0.4s ease;
+        }
+
+        .envelope-card:hover .wax-seal-icon {
+            transform: scale(1.1) rotate(6deg);
+            box-shadow: 0 14px 35px rgba(226, 125, 142, 0.7);
+        }
+
+        .envelope-title {
+            font-family: var(--font-display);
+            font-size: 1.7rem;
+            color: var(--text-primary);
+            margin-bottom: 0.4rem;
+        }
+
+        .envelope-subtext {
+            font-size: 0.85rem;
+            color: var(--accent-rose);
+            font-weight: 500;
+        }
+
+        .letter-paper-wrap {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transition: max-height 0.8s var(--ease-spring), opacity 0.6s ease, margin-top 0.4s ease;
+            text-align: left;
+        }
+
+        .letter-expanded .letter-paper-wrap {
+            max-height: 1200px;
+            opacity: 1;
+            margin-top: 2.25rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-outer);
+        }
+
+        .letter-parchment {
+            background: rgba(255, 255, 255, 0.035);
+            border-radius: 1.25rem;
+            padding: 2.25rem 2rem;
+            border: 1px dashed var(--border-inner);
+        }
+
+        [data-theme="light"] .letter-parchment {
+            background: #ffffff;
+            border-color: rgba(226, 125, 142, 0.35);
+        }
+
+        .letter-text {
+            font-family: var(--font-editorial);
+            font-size: 1.35rem;
+            line-height: 1.85;
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .letter-sign {
+            font-family: var(--font-script);
+            font-size: 2.6rem;
+            color: var(--accent-rose);
+            text-align: right;
+            line-height: 1;
+        }
+
+        /* -------------------------------------------------------------
+           FOOTER
+        ------------------------------------------------------------- */
+        footer {
+            text-align: center;
+            padding: 3rem 1rem 4rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        .footer-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.75rem 1.6rem;
+            background: var(--bg-surface);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--border-outer);
+            border-radius: var(--radius-pill);
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            box-shadow: var(--shadow-ambient);
+        }
+
+        .footer-badge strong {
+            color: var(--accent-rose);
+        }
+
+        /* Flying Hearts Generator */
+        .burst-heart {
+            position: fixed;
+            pointer-events: none;
+            z-index: 999;
+            font-size: 1.25rem;
+            animation: burst-up 1.1s var(--ease-out) forwards;
+        }
+
+        @keyframes burst-up {
+            0% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(0.6) rotate(0deg);
+            }
+            50% {
+                opacity: 0.9;
+                transform: translate(calc(-50% + var(--dx)), calc(-50% - 50px)) scale(1.2) rotate(var(--dr));
+            }
+            100% {
+                opacity: 0;
+                transform: translate(calc(-50% + var(--dx)), calc(-50% - 100px)) scale(0.8) rotate(var(--dr));
+            }
+        }
+
+        /* -------------------------------------------------------------
+           RESPONSIVE REFINEMENT (Apple Mobile Native)
+        ------------------------------------------------------------- */
+        @media (max-width: 860px) {
+            .story-split-grid, .story-split-grid.reversed {
+                grid-template-columns: 1fr;
+                gap: 1.75rem;
+            }
+
+            .story-split-grid.reversed .story-content-side {
+                order: 1;
+            }
+
+            .story-split-grid.reversed .story-media-side {
+                order: 2;
+            }
+
+            .story-journey::before {
+                display: none;
+            }
+
+            .site-container {
+                padding: 5.5rem 1rem 3rem;
+            }
+
+            .story-inner {
+                padding: 1.75rem 1.25rem;
+            }
+
+            .photo-stage, .flip-card-stage {
+                height: 310px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .counter-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.5rem;
+            }
+
+            .polaroid-deck {
+                min-height: auto;
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .polaroid-card {
+                position: relative !important;
+                transform: none !important;
+                width: 100%;
+                max-width: 320px;
+            }
+
+            .deck-instruction {
+                display: none;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.01ms !important;
+            }
+            #ambient-canvas, #cursor-glow {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Scroll Progress Indicator -->
+    <div id="scroll-progress" aria-hidden="true"></div>
+
+    <!-- Background Atmospheric Canvas -->
+    <canvas id="ambient-canvas" aria-hidden="true"></canvas>
+
+    <!-- Subtle Film Grain Overlay -->
+    <div class="film-grain" aria-hidden="true"></div>
+
+    <!-- Cursor Follower Ambient Glow -->
+    <div id="cursor-glow" aria-hidden="true"></div>
+
+    <!-- Floating Glass Island Navbar -->
+    <nav class="nav-wrapper" aria-label="Navegación principal">
+        <div class="nav-island">
+            <a href="#" class="nav-brand" title="Nuestra Historia">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                </svg>
+                <span>Tú y Yo</span>
+            </a>
+
+            <ul class="nav-links">
+                <li><a href="#capitulo-1">La Playa</a></li>
+                <li><a href="#capitulo-2">Hamburguesas</a></li>
+                <li><a href="#capitulo-3">La Moto</a></li>
+                <li><a href="#capitulo-4">El Video</a></li>
+                <li><a href="#polaroids">Recuerdos</a></li>
+                <li><a href="#seccion-carta">Nuestra Carta</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <!-- Ambient Web Audio Synthesizer Toggle -->
+                <button id="music-btn" class="icon-btn" title="Música romántica ambiental" aria-label="Música">
+                    <div class="equalizer-bars">
+                        <span class="eq-bar"></span>
+                        <span class="eq-bar"></span>
+                        <span class="eq-bar"></span>
+                    </div>
+                </button>
+
+                <!-- Theme Switch (Dark Velvet / Champagne Ivory) -->
+                <button id="theme-btn" class="icon-btn" title="Cambiar tema visual" aria-label="Cambiar tema">
+                    <svg id="theme-icon-sun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <main class="site-container">
+
+        <!-- HERO SECTION -->
+        <header class="hero-section">
+            <div class="eyebrow-pill">
+                <span>✦ NUESTRA HISTORIA DE AMOR ✦</span>
+            </div>
+
+            <h1 class="hero-title">Cada Instante Contigo</h1>
+
+            <p class="hero-subtitle">
+                Un recorrido íntimo por las miradas, las risas, las tradiciones y los nuevos caminos que nos han unido para siempre.
+            </p>
+
+            <!-- Dynamic Chronometer HUD -->
+            <div class="counter-hud" aria-label="Contador de tiempo juntos">
+                <div class="counter-hud-inner">
+                    <div class="counter-label">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                        <span>TIEMPO CAMINANDO JUNTOS</span>
+                    </div>
+
+                    <div class="counter-grid">
+                        <div class="counter-slot">
+                            <span class="counter-num" id="count-days">0</span>
+                            <span class="counter-unit">Días</span>
+                        </div>
+                        <div class="counter-slot">
+                            <span class="counter-num" id="count-hours">00</span>
+                            <span class="counter-unit">Horas</span>
+                        </div>
+                        <div class="counter-slot">
+                            <span class="counter-num" id="count-mins">00</span>
+                            <span class="counter-unit">Minutos</span>
+                        </div>
+                        <div class="counter-slot">
+                            <span class="counter-num" id="count-secs">00</span>
+                            <span class="counter-unit">Segundos</span>
+                        </div>
+                    </div>
+
+                    <div class="counter-footer">
+                        <span>Caminando juntos desde nuestro día especial: <strong id="anniversary-display">2 de Marzo de 2025</strong></span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- DYNAMIC ASYMMETRICAL STORY JOURNEY (ALL 4 CHAPTERS IN FULL GLORY) -->
+        <div class="story-journey">
+
+            <!-- CAPÍTULO 1: LA PLAYA (SPLIT: TEXT LEFT / PHOTO RIGHT) -->
+            <article class="story-card tilt-card" id="capitulo-1">
+                <div class="card-glare"></div>
+                <div class="story-inner">
+                    <div class="story-split-grid">
+                        <div class="story-content-side">
+                            <div class="chapter-meta-tag">
+                                <span class="chapter-pill">Capítulo I</span>
+                                <span class="chapter-badge">El Primer Cruce de Miradas</span>
+                            </div>
+                            <h2 class="chapter-title">Nuestros Inicios en la Playa</h2>
+
+                            <p class="chapter-text">
+                                Todo comenzó en la playa, un momento mágico donde nuestras miradas se cruzaron por primera vez y el mundo se detuvo para dar inicio a esta hermosa historia.
+                            </p>
+
+                            <blockquote class="chapter-quote">
+                                «El mar tenía miles de olas, pero entre todas ellas mis ojos solo supieron encontrarte a ti.»
+                            </blockquote>
+
+                            <div class="reaction-bar">
+                                <button class="heart-btn">
+                                    <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                                    <span>Amar este recuerdo</span>
+                                </button>
+                                <span style="font-size: 0.78rem; color: var(--text-muted);">Donde nació todo ✨</span>
+                            </div>
+                        </div>
+
+                        <div class="story-media-side">
+                            <div class="flip-card-stage" id="flip-beach" role="button" tabindex="0" aria-label="Tarjeta 3D interactiva de la playa. Toca para girar y ver otra foto." aria-pressed="false">
+                                <div class="flip-card-inner">
+                                    <!-- Cara frontal: Foto 1 -->
+                                    <div class="flip-card-face flip-card-front">
+                                        <img src="" alt="Nuestra foto en la playa al atardecer" id="img-beach-front">
+                                        <div class="photo-vignette"></div>
+                                        <div class="flip-hint-badge">
+                                            <span class="flip-badge-icon">🔄</span>
+                                            <span>Toca para girar</span>
+                                        </div>
+                                        <div class="photo-tag-overlay">
+                                            <span id="tag-beach-front">🏖️ Donde el mar fue testigo</span>
+                                        </div>
+                                    </div>
+                                    <!-- Cara trasera: Foto 2 -->
+                                    <div class="flip-card-face flip-card-back">
+                                        <img src="" alt="Momento especial en la playa" id="img-beach-back">
+                                        <div class="photo-vignette"></div>
+                                        <div class="flip-hint-badge">
+                                            <span class="flip-badge-icon">↩️</span>
+                                            <span>Toca para regresar</span>
+                                        </div>
+                                        <div class="photo-tag-overlay">
+                                            <span id="tag-beach-back">🌅 Cada atardecer a tu lado</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- CAPÍTULO 2: LAS HAMBURGUESAS (SPLIT REVERSED: PHOTO LEFT / TEXT RIGHT) -->
+            <article class="story-card tilt-card" id="capitulo-2">
+                <div class="card-glare"></div>
+                <div class="story-inner">
+                    <div class="story-split-grid reversed">
+                        <div class="story-content-side">
+                            <div class="chapter-meta-tag">
+                                <span class="chapter-pill">Capítulo II</span>
+                                <span class="chapter-badge">Nuestra Dulce Tradición</span>
+                            </div>
+                            <h2 class="chapter-title">Porque Contigo Todo Sabe Mejor</h2>
+
+                            <p class="chapter-text">
+                                Fuiste tú quien despertó en mí el gusto por las hamburguesas, creando una tradición que nos fue uniendo poco a poco alrededor de cada bocado, haciendo que cada momento juntos sea mucho más especial.
+                            </p>
+
+                            <blockquote class="chapter-quote">
+                                «No es solo la comida, es la complicidad, las charlas infinitas y la felicidad de tenerte al frente en cada cena.»
+                            </blockquote>
+
+                            <div class="reaction-bar">
+                                <button class="heart-btn">
+                                    <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                                    <span>Complicidad infinita</span>
+                                </button>
+                                <span style="font-size: 0.78rem; color: var(--text-muted);">Sabor a felicidad 🍔</span>
+                            </div>
+                        </div>
+
+                        <div class="story-media-side">
+                            <div class="flip-card-stage" id="flip-burgers" role="button" tabindex="0" aria-label="Tarjeta 3D interactiva de hamburguesas. Toca para girar y ver otra foto." aria-pressed="false">
+                                <div class="flip-card-inner">
+                                    <!-- Cara frontal: Foto 1 -->
+                                    <div class="flip-card-face flip-card-front">
+                                        <img src="" alt="Comiendo hamburguesa juntos" id="img-burgers-front">
+                                        <div class="photo-vignette"></div>
+                                        <div class="flip-hint-badge">
+                                            <span class="flip-badge-icon">🔄</span>
+                                            <span>Toca para girar</span>
+                                        </div>
+                                        <div class="photo-tag-overlay">
+                                            <span id="tag-burgers-front">🍔 Nuestro ritual favorito de risas</span>
+                                        </div>
+                                    </div>
+                                    <!-- Cara trasera: Foto 2 -->
+                                    <div class="flip-card-face flip-card-back">
+                                        <img src="" alt="Otro momento feliz comiendo juntos" id="img-burgers-back">
+                                        <div class="photo-vignette"></div>
+                                        <div class="flip-hint-badge">
+                                            <span class="flip-badge-icon">↩️</span>
+                                            <span>Toca para regresar</span>
+                                        </div>
+                                        <div class="photo-tag-overlay">
+                                            <span id="tag-burgers-back">✨ Felicidad en cada bocado</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- CAPÍTULO 3: LA MOTOCICLETA (SPLIT: TEXT LEFT / PHOTO RIGHT) -->
+            <article class="story-card tilt-card" id="capitulo-3">
+                <div class="card-glare"></div>
+                <div class="story-inner">
+                    <div class="story-split-grid">
+                        <div class="story-content-side">
+                            <div class="chapter-meta-tag">
+                                <span class="chapter-pill">Capítulo III</span>
+                                <span class="chapter-badge">Nuestras Rutas en Dos Ruedas</span>
+                            </div>
+                            <h2 class="chapter-title">Nuevos Caminos Juntos</h2>
+
+                            <p class="chapter-text">
+                                Gracias a ti sentí ese deseo e inspiración por adquirir mi propio vehículo, para poder movilizarnos y seguir compartiendo momentos memorables recorriendo nuevos caminos a tu lado.
+                            </p>
+
+                            <blockquote class="chapter-quote">
+                                «Cualquier destino se vuelve perfecto cuando tú eres quien va conmigo en el camino.»
+                            </blockquote>
+
+                            <div class="reaction-bar">
+                                <button class="heart-btn">
+                                    <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                                    <span>Rodar a tu lado</span>
+                                </button>
+                                <span style="font-size: 0.78rem; color: var(--text-muted);">Kilómetros de amor 🏍️</span>
+                            </div>
+                        </div>
+
+                        <div class="story-media-side">
+                            <div class="flip-card-stage" id="flip-moto" role="button" tabindex="0" aria-label="Tarjeta 3D interactiva de la moto. Toca para girar y ver otra foto." aria-pressed="false">
+                                <div class="flip-card-inner">
+                                    <!-- Cara frontal: Foto 1 -->
+                                    <div class="flip-card-face flip-card-front">
+                                        <img src="" alt="Nuestra motocicleta en la carretera" id="img-moto-front">
+                                        <div class="photo-vignette"></div>
+                                        <div class="flip-hint-badge">
+                                            <span class="flip-badge-icon">🔄</span>
+                                            <span>Toca para girar</span>
+                                        </div>
+                                        <div class="photo-tag-overlay">
+                                            <span id="tag-moto-front">🏍️ El viento y tú abrazándome fuerte</span>
+                                        </div>
+                                    </div>
+                                    <!-- Cara trasera: Foto 2 -->
+                                    <div class="flip-card-face flip-card-back">
+                                        <img src="" alt="Rodando juntos en la moto" id="img-moto-back">
+                                        <div class="photo-vignette"></div>
+                                        <div class="flip-hint-badge">
+                                            <span class="flip-badge-icon">↩️</span>
+                                            <span>Toca para regresar</span>
+                                        </div>
+                                        <div class="photo-tag-overlay">
+                                            <span id="tag-moto-back">🛣️ Kilómetros compartidos de amor</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- CAPÍTULO 4: EL VIDEO Y MENSAJE FINAL (FULL WIDTH CINEMA EXPERIENCE) -->
+            <article class="story-card tilt-card" id="capitulo-4">
+                <div class="card-glare"></div>
+                <div class="story-inner">
+                    <div>
+                        <div class="chapter-meta-tag">
+                            <span class="chapter-pill">Capítulo IV</span>
+                            <span class="chapter-badge">El Presente & El Futuro</span>
+                        </div>
+                        <h2 class="chapter-title">Junto a Ti, Todo Esto Fue Posible</h2>
+                    </div>
+
+                    <!-- Cinema Theater Video Container -->
+                    <div class="cinema-theater-box">
+                        <video controls playsinline preload="metadata" poster="" id="main-video">
+                            <source src="" type="video/mp4" id="main-video-src">
+                            Tu navegador no soporta video HTML5.
+                        </video>
+                    </div>
+
+                    <p class="chapter-text" style="font-size: 1.15rem; color: var(--text-primary);">
+                        Cada risa, cada viaje y cada instante a tu lado me demuestra que contigo he encontrado mi lugar favorito en el mundo.
+                    </p>
+
+                    <blockquote class="chapter-quote">
+                        «Eres mi presente más lindo y el futuro más bonito que siempre elijo soñar.»
+                    </blockquote>
+
+                    <div class="reaction-bar">
+                        <button class="heart-btn">
+                            <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                            <span>Por siempre juntos ❤️</span>
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+        </div>
+
+        <!-- DYNAMIC POLAROID SCRAPBOOK (FAN-OUT DECK) -->
+        <section class="scrapbook-section" id="polaroids">
+            <div class="section-headline-group">
+                <div class="section-kicker">✦ ÁLBUM DE NUESTRA VIDA ✦</div>
+                <h2 class="section-headline">Nuestros Recuerdos Favoritos</h2>
+            </div>
+
+            <div class="polaroid-deck" id="polaroid-deck">
+                <!-- Polaroid 1: Playa -->
+                <div class="polaroid-card deck-pos-1" data-id="1">
+                    <div class="polaroid-photo-box">
+                        <img src="" alt="Recuerdo de la playa" id="polaroid-img-1">
+                    </div>
+                    <div class="polaroid-caption">Aquel día en el mar ✨</div>
+                </div>
+
+                <!-- Polaroid 2: Hamburguesas -->
+                <div class="polaroid-card deck-pos-2" data-id="2">
+                    <div class="polaroid-photo-box">
+                        <img src="" alt="Recuerdo de hamburguesa" id="polaroid-img-2">
+                    </div>
+                    <div class="polaroid-caption">Nuestra mejor cena 🍔</div>
+                </div>
+
+                <!-- Polaroid 3: Moto -->
+                <div class="polaroid-card deck-pos-3" data-id="3">
+                    <div class="polaroid-photo-box">
+                        <img src="" alt="Recuerdo en la moto" id="polaroid-img-3">
+                    </div>
+                    <div class="polaroid-caption">Rumbo al horizonte 🏍️</div>
+                </div>
+            </div>
+            <p class="deck-instruction">Pasa el cursor por encima o haz clic para interactuar con las fotos</p>
+        </section>
+
+        <!-- DIGITAL SEALED LOVE LETTER (3D WAX ENVELOPE) -->
+        <section class="letter-section" id="seccion-carta">
+            <div class="envelope-shell">
+                <div class="envelope-card" id="envelope-trigger">
+                    <div class="wax-seal-icon" aria-hidden="true">💌</div>
+                    <h3 class="envelope-title">Tengo una Carta Secreta para Ti</h3>
+                    <p class="envelope-subtext">
+                        <span id="seal-instruction">Toca para romper el sello y leerla</span>
+                    </p>
+
+                    <div class="letter-paper-wrap" id="letter-content">
+                        <div class="letter-parchment">
+                            <p class="letter-text">
+                                Mi amor,<br><br>
+                                Si algo me ha enseñado el tiempo a tu lado, es que las mejores cosas de la vida nunca se planean: simplemente ocurren cuando dos almas están destinadas a coincidir.<br><br>
+                                Desde aquel día en que el mar fue testigo de nuestras primeras miradas, hasta cada tarde compartiendo una hamburguesa y cada curva que recorremos sobre dos ruedas, has transformado lo ordinario en momentos extraordinarios.<br><br>
+                                Gracias por ser mi apoyo, mi risa favorita, mi mejor compañía y la inspiración que me impulsa a crecer día tras día. No importa hacia dónde nos lleven los caminos del futuro; mientras sea de tu mano, sé que siempre será el destino correcto.<br><br>
+                                Te amo con todo mi corazón.
+                            </p>
+                            <div class="letter-sign">Siempre tuyo ❤️</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-badge">
+            <span>Hecho con todo el amor del mundo</span> • <strong>Para la dueña de mi corazón ❤️</strong>
+        </div>
+    </footer>
+
+    <!-- Audio Element -->
+    <audio id="bg-audio" loop preload="none">
+        <source src="nuestra-cancion.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- -------------------------------------------------------------
+         CLIENT-SIDE CONFIGURATION & JAVASCRIPT ENGINE
+    ------------------------------------------------------------- -->
+    <script>
+        // =========================================================================
+        // 🌹 CONFIGURACIÓN DE TU HISTORIA (Modifica aquí tus fotos, video y fecha)
+        // =========================================================================
+        const CONFIG = {
+            // Fecha exacta de inicio de la relación (Año-Mes-DíaTHora:Minuto:Segundo)
+            anniversaryDate: "2025-03-02T00:00:00",
+            anniversaryLabel: "2 de Marzo de 2025",
+
+            // 📸 FOTOGRAFÍAS EN TARJETAS 3D GIRATORIAS
+            // Cada capítulo cuenta con 2 fotos:
+            // - front: Foto mostrada inicialmente en la cara frontal.
+            // - back: Foto revelada al tocar la tarjeta (giro 3D de 180°).
+            // - frontTag / backTag: Texto descriptivo en la esquina de cada cara.
+            // Puedes usar rutas de tus fotos locales (ej: "playa_1.jpg", "playa_2.jpg") o enlaces URL.
+            photos: {
+                beach: {
+                    front: "Imagenes/Capitulo1_Frontal.jpeg",
+                    back: "Imagenes/Capitulo1_Trasera.jpeg",
+                    frontPos: "center 68%", // Ajuste focal para elevar la toma y mostrar a ambos con la pelota
+                    backPos: "center center",
+                    frontTag: "🏖️ Donde el mar fue testigo",
+                    backTag: "🌅 Cada atardecer a tu lado"
+                },
+                burgers: {
+                    front: "Imagenes/Capitulo2_Frontal.jpeg",
+                    back: "Imagenes/Capitulo2_Trasera.jpeg",
+                    frontPos: "center center",
+                    backPos: "center center",
+                    frontTag: "🍔 Nuestro ritual favorito de risas",
+                    backTag: "✨ Felicidad en cada bocado"
+                },
+                moto: {
+                    front: "Imagenes/Capitulo3_Frontal.jpeg",
+                    back: "Imagenes/Capitulo3_Trasera.jpeg",
+                    frontPos: "center center",
+                    backPos: "center center",
+                    frontTag: "🏍️ El viento y tú abrazándome fuerte",
+                    backTag: "🛣️ Kilómetros compartidos de amor"
+                }
+            },
+
+            // Archivo de video y carátula del reproductor
+            video: {
+                src: "tu-video.mp4",
+                poster: "https://images.unsplash.com/photo-1518199266791-5375a83190b7?q=80&w=1400&auto=format&fit=crop"
+            }
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+
+            /* 1. INITIALIZE ASSETS FROM CONFIG */
+            // 3D Flip Cards: Chapter 1 (Playa)
+            const imgBeachFront = document.getElementById('img-beach-front');
+            const imgBeachBack = document.getElementById('img-beach-back');
+            const tagBeachFront = document.getElementById('tag-beach-front');
+            const tagBeachBack = document.getElementById('tag-beach-back');
+
+            if (imgBeachFront) {
+                imgBeachFront.src = CONFIG.photos.beach.front;
+                if (CONFIG.photos.beach.frontPos) imgBeachFront.style.objectPosition = CONFIG.photos.beach.frontPos;
+            }
+            if (imgBeachBack) {
+                imgBeachBack.src = CONFIG.photos.beach.back;
+                if (CONFIG.photos.beach.backPos) imgBeachBack.style.objectPosition = CONFIG.photos.beach.backPos;
+            }
+            if (tagBeachFront) tagBeachFront.textContent = CONFIG.photos.beach.frontTag;
+            if (tagBeachBack) tagBeachBack.textContent = CONFIG.photos.beach.backTag;
+
+            // 3D Flip Cards: Chapter 2 (Hamburguesas)
+            const imgBurgersFront = document.getElementById('img-burgers-front');
+            const imgBurgersBack = document.getElementById('img-burgers-back');
+            const tagBurgersFront = document.getElementById('tag-burgers-front');
+            const tagBurgersBack = document.getElementById('tag-burgers-back');
+
+            if (imgBurgersFront) {
+                imgBurgersFront.src = CONFIG.photos.burgers.front;
+                if (CONFIG.photos.burgers.frontPos) imgBurgersFront.style.objectPosition = CONFIG.photos.burgers.frontPos;
+            }
+            if (imgBurgersBack) {
+                imgBurgersBack.src = CONFIG.photos.burgers.back;
+                if (CONFIG.photos.burgers.backPos) imgBurgersBack.style.objectPosition = CONFIG.photos.burgers.backPos;
+            }
+            if (tagBurgersFront) tagBurgersFront.textContent = CONFIG.photos.burgers.frontTag;
+            if (tagBurgersBack) tagBurgersBack.textContent = CONFIG.photos.burgers.backTag;
+
+            // 3D Flip Cards: Chapter 3 (Motocicleta)
+            const imgMotoFront = document.getElementById('img-moto-front');
+            const imgMotoBack = document.getElementById('img-moto-back');
+            const tagMotoFront = document.getElementById('tag-moto-front');
+            const tagMotoBack = document.getElementById('tag-moto-back');
+
+            if (imgMotoFront) {
+                imgMotoFront.src = CONFIG.photos.moto.front;
+                if (CONFIG.photos.moto.frontPos) imgMotoFront.style.objectPosition = CONFIG.photos.moto.frontPos;
+            }
+            if (imgMotoBack) {
+                imgMotoBack.src = CONFIG.photos.moto.back;
+                if (CONFIG.photos.moto.backPos) imgMotoBack.style.objectPosition = CONFIG.photos.moto.backPos;
+            }
+            if (tagMotoFront) tagMotoFront.textContent = CONFIG.photos.moto.frontTag;
+            if (tagMotoBack) tagMotoBack.textContent = CONFIG.photos.moto.backTag;
+
+            // Polaroid Deck images
+            const pol1 = document.getElementById('polaroid-img-1');
+            const pol2 = document.getElementById('polaroid-img-2');
+            const pol3 = document.getElementById('polaroid-img-3');
+
+            if (pol1) {
+                pol1.src = CONFIG.photos.beach.front;
+                if (CONFIG.photos.beach.frontPos) pol1.style.objectPosition = CONFIG.photos.beach.frontPos;
+            }
+            if (pol2) {
+                pol2.src = CONFIG.photos.burgers.front;
+                if (CONFIG.photos.burgers.frontPos) pol2.style.objectPosition = CONFIG.photos.burgers.frontPos;
+            }
+            if (pol3) {
+                pol3.src = CONFIG.photos.moto.front;
+                if (CONFIG.photos.moto.frontPos) pol3.style.objectPosition = CONFIG.photos.moto.frontPos;
+            }
+
+            // Video
+            const mainVideo = document.getElementById('main-video');
+            const mainVideoSrc = document.getElementById('main-video-src');
+            if (mainVideo) {
+                mainVideo.poster = CONFIG.video.poster;
+                if (mainVideoSrc) mainVideoSrc.src = CONFIG.video.src;
+                mainVideo.load();
+            }
+
+            // Anniversary Label
+            const anniversaryDisplay = document.getElementById('anniversary-display');
+            if (anniversaryDisplay) {
+                anniversaryDisplay.textContent = CONFIG.anniversaryLabel;
+            }
+
+            /* 1.1 INTERACCIÓN DE TARJETAS 3D FLIP */
+            const flipCardStages = document.querySelectorAll('.flip-card-stage');
+            flipCardStages.forEach(stage => {
+                const triggerFlip = (e) => {
+                    e.stopPropagation();
+                    const isFlipped = stage.classList.toggle('is-flipped');
+                    stage.setAttribute('aria-pressed', isFlipped ? 'true' : 'false');
+
+                    // Destello de corazones en el centro de la tarjeta
+                    const rect = stage.getBoundingClientRect();
+                    const cx = rect.left + rect.width / 2;
+                    const cy = rect.top + rect.height / 2;
+                    createBurst(cx, cy, 7);
+                };
+
+                stage.addEventListener('click', triggerFlip);
+                stage.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        triggerFlip(e);
+                    }
+                });
+            });
+
+            /* 2. SCROLL PROGRESS */
+            const progressBar = document.getElementById('scroll-progress');
+            window.addEventListener('scroll', () => {
+                const total = document.documentElement.scrollHeight - window.innerHeight;
+                if (total > 0) {
+                    progressBar.style.width = ((window.scrollY / total) * 100) + '%';
+                }
+            }, { passive: true });
+
+            /* 3. THEME SWITCH */
+            const themeBtn = document.getElementById('theme-btn');
+            const htmlEl = document.documentElement;
+            const savedTheme = localStorage.getItem('romantic_theme') || 'dark';
+            htmlEl.setAttribute('data-theme', savedTheme);
+
+            themeBtn.addEventListener('click', () => {
+                const cur = htmlEl.getAttribute('data-theme');
+                const nxt = cur === 'dark' ? 'light' : 'dark';
+                htmlEl.setAttribute('data-theme', nxt);
+                localStorage.setItem('romantic_theme', nxt);
+            });
+
+            /* 4. AMBIENT CURSOR GLOW */
+            const cursorGlow = document.getElementById('cursor-glow');
+            window.addEventListener('pointermove', (e) => {
+                cursorGlow.style.left = e.clientX + 'px';
+                cursorGlow.style.top = e.clientY + 'px';
+            }, { passive: true });
+
+            /* 5. CHRONOMETER ENGINE */
+            const daysEl = document.getElementById('count-days');
+            const hoursEl = document.getElementById('count-hours');
+            const minsEl = document.getElementById('count-mins');
+            const secsEl = document.getElementById('count-secs');
+
+            function updateCounter() {
+                const start = new Date(CONFIG.anniversaryDate).getTime();
+                const now = new Date().getTime();
+                let diff = Math.max(0, now - start);
+
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                diff -= days * (1000 * 60 * 60 * 24);
+
+                const hours = Math.floor(diff / (1000 * 60 * 60));
+                diff -= hours * (1000 * 60 * 60);
+
+                const mins = Math.floor(diff / (1000 * 60));
+                diff -= mins * (1000 * 60);
+
+                const secs = Math.floor(diff / 1000);
+
+                if (daysEl) daysEl.textContent = days.toLocaleString();
+                if (hoursEl) hoursEl.textContent = String(hours).padStart(2, '0');
+                if (minsEl) minsEl.textContent = String(mins).padStart(2, '0');
+                if (secsEl) secsEl.textContent = String(secs).padStart(2, '0');
+            }
+            updateCounter();
+            setInterval(updateCounter, 1000);
+
+            /* 6. 3D PERSPECTIVE TILT ON ALL CHAPTER CARDS */
+            const tiltCards = document.querySelectorAll('.tilt-card');
+            tiltCards.forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+
+                    card.style.setProperty('--mouse-x', `${(x / rect.width) * 100}%`);
+                    card.style.setProperty('--mouse-y', `${(y / rect.height) * 100}%`);
+
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    const rotateX = ((y - centerY) / centerY) * -3.5;
+                    const rotateY = ((x - centerX) / centerX) * 3.5;
+
+                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.008, 1.008, 1.008)`;
+                });
+
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+                    card.style.transition = 'transform 0.5s var(--ease-spring)';
+                });
+
+                card.addEventListener('mouseenter', () => {
+                    card.style.transition = 'none';
+                });
+            });
+
+            /* 7. WAX SEAL LETTER EXPANSION */
+            const envelopeTrigger = document.getElementById('envelope-trigger');
+            const sealInstruction = document.getElementById('seal-instruction');
+            if (envelopeTrigger) {
+                envelopeTrigger.addEventListener('click', () => {
+                    const isOpen = envelopeTrigger.classList.toggle('letter-expanded');
+                    if (isOpen) {
+                        sealInstruction.textContent = '✨ Carta abierta • Con todo mi amor';
+                        createBurst(window.innerWidth / 2, window.innerHeight / 2, 14);
+                    } else {
+                        sealInstruction.textContent = 'Toca para romper el sello y leerla';
+                    }
+                });
+            }
+
+            /* 8. HEART BURST GENERATOR */
+            function createBurst(x, y, count = 5) {
+                const emojis = ['❤️', '💖', '✨', '🌹', '💕', '💫'];
+                for (let i = 0; i < count; i++) {
+                    const el = document.createElement('div');
+                    el.className = 'burst-heart';
+                    el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                    el.style.left = x + 'px';
+                    el.style.top = y + 'px';
+                    el.style.setProperty('--dx', (Math.random() * 90 - 45) + 'px');
+                    el.style.setProperty('--dr', (Math.random() * 60 - 30) + 'deg');
+                    document.body.appendChild(el);
+                    setTimeout(() => el.remove(), 1100);
+                }
+            }
+
+            document.addEventListener('click', (e) => {
+                if (!e.target.closest('input, video, select, textarea')) {
+                    createBurst(e.clientX, e.clientY, 3);
+                }
+            });
+
+            document.querySelectorAll('.heart-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const rect = btn.getBoundingClientRect();
+                    createBurst(rect.left + rect.width / 2, rect.top, 8);
+                    btn.style.transform = 'scale(1.1)';
+                    setTimeout(() => btn.style.transform = '', 200);
+                });
+            });
+
+            /* 9. POLAROID SHUFFLE INTERACTIVITY */
+            const polaroids = document.querySelectorAll('.polaroid-card');
+            polaroids.forEach(p => {
+                p.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const rect = p.getBoundingClientRect();
+                    createBurst(rect.left + rect.width / 2, rect.top, 6);
+                    p.style.transform = 'scale(1.15) rotate(0deg)';
+                    setTimeout(() => p.style.transform = '', 600);
+                });
+            });
+
+            /* 10. AMBIENT PETALS CANVAS */
+            const canvas = document.getElementById('ambient-canvas');
+            const ctx = canvas.getContext('2d');
+            let petals = [];
+            let w, h;
+
+            function resize() {
+                w = canvas.width = window.innerWidth;
+                h = canvas.height = window.innerHeight;
+            }
+            window.addEventListener('resize', resize, { passive: true });
+            resize();
+
+            class Petal {
+                constructor() { this.reset(true); }
+                reset(initial = false) {
+                    this.x = Math.random() * w;
+                    this.y = initial ? Math.random() * h : -20;
+                    this.size = Math.random() * 5 + 4;
+                    this.speedY = Math.random() * 0.6 + 0.3;
+                    this.speedX = Math.sin(Math.random() * 10) * 0.4;
+                    this.angle = Math.random() * Math.PI * 2;
+                    this.angleSpeed = (Math.random() - 0.5) * 0.02;
+                    this.opacity = Math.random() * 0.4 + 0.15;
+                    this.color = Math.random() > 0.4 ? '226, 125, 142' : '229, 185, 143';
+                }
+                update() {
+                    this.y += this.speedY;
+                    this.x += Math.sin(this.angle) * 0.5 + this.speedX;
+                    this.angle += this.angleSpeed;
+                    if (this.y > h + 20 || this.x < -20 || this.x > w + 20) this.reset();
+                }
+                draw() {
+                    ctx.save();
+                    ctx.translate(this.x, this.y);
+                    ctx.rotate(this.angle);
+                    ctx.fillStyle = `rgba(${this.color}, ${this.opacity})`;
+                    ctx.beginPath();
+                    ctx.ellipse(0, 0, this.size, this.size * 0.65, 0, 0, Math.PI * 2);
+                    ctx.fill();
+                    ctx.restore();
+                }
+            }
+
+            const count = Math.min(32, Math.floor(window.innerWidth / 35));
+            for (let i = 0; i < count; i++) petals.push(new Petal());
+
+            function loop() {
+                ctx.clearRect(0, 0, w, h);
+                for (let i = 0; i < petals.length; i++) {
+                    petals[i].update();
+                    petals[i].draw();
+                }
+                requestAnimationFrame(loop);
+            }
+            loop();
+
+            /* 11. WEB AUDIO API SYNTHESIZER */
+            let audioCtx = null;
+            let isMusicPlaying = false;
+            const musicBtn = document.getElementById('music-btn');
+            const bgAudio = document.getElementById('bg-audio');
+
+            const chords = [
+                [349.23, 440.00, 523.25, 659.25], // Fmaj7
+                [261.63, 329.63, 392.00, 493.88], // Cmaj7
+                [293.66, 349.23, 440.00, 523.25], // Dm7
+                [233.08, 293.66, 349.23, 440.00]  // Bbmaj7
+            ];
+
+            let chordIdx = 0;
+            let synthTimer = null;
+
+            function playChord() {
+                if (!audioCtx) return;
+                const now = audioCtx.currentTime;
+                const notes = chords[chordIdx % chords.length];
+                chordIdx++;
+
+                notes.forEach((freq, i) => {
+                    const osc = audioCtx.createOscillator();
+                    const gain = audioCtx.createGain();
+
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(freq, now + i * 0.14);
+
+                    gain.gain.setValueAtTime(0.001, now + i * 0.14);
+                    gain.gain.exponentialRampToValueAtTime(0.04, now + i * 0.14 + 0.3);
+                    gain.gain.exponentialRampToValueAtTime(0.0001, now + i * 0.14 + 3.8);
+
+                    osc.connect(gain);
+                    gain.connect(audioCtx.destination);
+
+                    osc.start(now + i * 0.14);
+                    osc.stop(now + i * 0.14 + 4.0);
+                });
+            }
+
+            musicBtn.addEventListener('click', () => {
+                if (!isMusicPlaying) {
+                    bgAudio.play().then(() => {
+                        isMusicPlaying = true;
+                        musicBtn.classList.add('music-playing');
+                    }).catch(() => {
+                        if (!audioCtx) {
+                            audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                        }
+                        if (audioCtx.state === 'suspended') audioCtx.resume();
+                        isMusicPlaying = true;
+                        musicBtn.classList.add('music-playing');
+                        playChord();
+                        synthTimer = setInterval(playChord, 3800);
+                    });
+                } else {
+                    isMusicPlaying = false;
+                    musicBtn.classList.remove('music-playing');
+                    bgAudio.pause();
+                    if (synthTimer) clearInterval(synthTimer);
+                }
+            });
+
+            /* 12. GSAP ENTRANCE & PARALLAX SCROLLTRIGGERS */
+            if (window.gsap) {
+                if (window.ScrollTrigger) gsap.registerPlugin(ScrollTrigger);
+
+                gsap.from('.hero-section > *', {
+                    y: 35,
+                    opacity: 0,
+                    duration: 1.1,
+                    stagger: 0.15,
+                    ease: 'power3.out'
+                });
+
+                gsap.utils.toArray('.story-card').forEach(card => {
+                    gsap.from(card, {
+                        scrollTrigger: {
+                            trigger: card,
+                            start: 'top 85%',
+                            toggleActions: 'play none none none'
+                        },
+                        y: 45,
+                        opacity: 0,
+                        scale: 0.96,
+                        duration: 1.0,
+                        ease: 'power2.out'
+                    });
+                });
+            }
+
+        });
+    </script>
+</body>
+</html>
