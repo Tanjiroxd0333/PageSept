@@ -1136,8 +1136,13 @@
                 animation-duration: 0.01ms !important;
                 transition-duration: 0.01ms !important;
             }
+            #ambient-canvas, #cursor-glow {
+                display: none;
+            }
+        }
+
         /* -------------------------------------------------------------
-           SECRET LOVE GATE (ENTRY LOCK SCREEN OVERLAY)
+           SECRET LOVE GATE (ENTRY LOCK SCREEN MODAL)
         ------------------------------------------------------------- */
         body.is-locked {
             overflow: hidden !important;
@@ -1149,58 +1154,64 @@
         body.is-locked .nav-wrapper,
         body.is-locked footer,
         body.is-locked #scroll-progress {
-            filter: blur(28px) brightness(0.65) saturate(0.7);
-            opacity: 0.18;
+            filter: blur(24px) brightness(0.4) saturate(0.5);
+            opacity: 0.15;
             pointer-events: none !important;
             user-select: none !important;
-            transition: filter 1s cubic-bezier(0.16, 1, 0.3, 1), opacity 1s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: filter 0.8s ease, opacity 0.8s ease;
         }
 
         .site-container,
         .nav-wrapper,
         footer,
         #scroll-progress {
-            transition: filter 1s cubic-bezier(0.16, 1, 0.3, 1), opacity 1s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: filter 0.8s ease, opacity 0.8s ease;
         }
 
+        /* Fullscreen Modal Backdrop */
         .lock-screen-overlay {
-            position: fixed;
-            inset: 0;
-            width: 100%;
-            height: 100dvh;
-            z-index: 10000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 1.5rem;
-            background: rgba(9, 7, 12, 0.88);
-            backdrop-filter: blur(35px);
-            -webkit-backdrop-filter: blur(35px);
-            transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.85s;
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            bottom: 0 !important;
+            width: 100vw !important;
+            height: 100vh !important;
+            height: 100dvh !important;
+            z-index: 999999 !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            padding: 1.5rem !important;
+            background: rgba(9, 7, 12, 0.95) !important;
+            backdrop-filter: blur(35px) !important;
+            -webkit-backdrop-filter: blur(35px) !important;
+            transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.75s !important;
         }
 
         .lock-screen-overlay.unlocked {
-            opacity: 0;
-            transform: scale(1.06);
-            pointer-events: none;
-            visibility: hidden;
+            opacity: 0 !important;
+            visibility: hidden !important;
+            pointer-events: none !important;
         }
 
         .lock-card-shell {
             width: 100%;
             max-width: 480px;
-            padding: 0.55rem;
-            border-radius: var(--radius-outer);
+            padding: 0.6rem;
+            border-radius: 2.25rem;
             background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--border-outer);
-            box-shadow: var(--shadow-ambient), 0 0 60px rgba(226, 125, 142, 0.15);
-            animation: lock-card-pop 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            border: 1px solid rgba(226, 125, 142, 0.3);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.9), 0 0 50px rgba(226, 125, 142, 0.2);
+            animation: lock-card-pop 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            position: relative;
+            z-index: 1000000;
         }
 
         @keyframes lock-card-pop {
             0% {
                 opacity: 0;
-                transform: scale(0.92) translateY(20px);
+                transform: scale(0.9) translateY(25px);
             }
             100% {
                 opacity: 1;
@@ -1209,60 +1220,57 @@
         }
 
         .lock-card {
-            background: var(--bg-card-inner);
-            border-radius: var(--radius-inner);
-            border: 1px solid var(--border-highlight);
-            padding: 2.8rem 2.2rem;
+            background: #15101a;
+            border-radius: calc(2.25rem - 0.5rem);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            padding: 2.75rem 2rem;
             text-align: center;
             position: relative;
-            box-shadow: var(--shadow-inner);
         }
 
         .lock-heart-pulse {
-            width: 76px;
-            height: 76px;
+            width: 80px;
+            height: 80px;
             border-radius: 50%;
             margin: 0 auto 1.4rem;
-            background: radial-gradient(circle at 35% 35%, rgba(226, 125, 142, 0.3), rgba(201, 24, 74, 0.15));
-            border: 1px solid rgba(226, 125, 142, 0.4);
-            box-shadow: 0 0 35px rgba(226, 125, 142, 0.35);
+            background: radial-gradient(circle at 35% 35%, rgba(226, 125, 142, 0.35), rgba(201, 24, 74, 0.2));
+            border: 2px solid rgba(226, 125, 142, 0.5);
+            box-shadow: 0 0 35px rgba(226, 125, 142, 0.4);
             display: flex;
             align-items: center;
             justify-content: center;
             animation: lock-heartbeat 2.2s infinite ease-in-out;
-            font-size: 2rem;
-            transition: transform 0.4s var(--ease-spring), background-color 0.4s ease;
+            font-size: 2.2rem;
         }
 
         @keyframes lock-heartbeat {
-            0%, 100% { transform: scale(1); box-shadow: 0 0 25px rgba(226, 125, 142, 0.25); }
-            50% { transform: scale(1.08); box-shadow: 0 0 45px rgba(226, 125, 142, 0.5); }
+            0%, 100% { transform: scale(1); box-shadow: 0 0 25px rgba(226, 125, 142, 0.3); }
+            50% { transform: scale(1.08); box-shadow: 0 0 45px rgba(226, 125, 142, 0.6); }
         }
 
         .lock-badge {
             font-size: 0.72rem;
-            letter-spacing: 0.16em;
+            letter-spacing: 0.18em;
             text-transform: uppercase;
             font-weight: 700;
-            color: var(--accent-gold);
+            color: #e5b98f;
             margin-bottom: 0.75rem;
             display: inline-block;
         }
 
         .lock-title {
-            font-family: var(--font-display);
-            font-size: clamp(1.6rem, 3.5vw, 2.1rem);
-            color: var(--text-primary);
-            line-height: 1.25;
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: clamp(1.65rem, 4vw, 2.2rem);
+            color: #fcf9fa;
+            line-height: 1.2;
             margin-bottom: 0.85rem;
         }
 
         .lock-desc {
             font-size: 0.95rem;
             line-height: 1.6;
-            color: var(--text-secondary);
+            color: #c7b8c4;
             margin-bottom: 1.75rem;
-            text-wrap: pretty;
         }
 
         .lock-form {
@@ -1273,16 +1281,16 @@
             position: relative;
             display: flex;
             align-items: center;
-            background: rgba(10, 8, 14, 0.75);
-            border: 1px solid var(--border-outer);
-            border-radius: var(--radius-pill);
-            padding: 0.35rem 0.35rem 0.35rem 1.2rem;
+            background: #09070c;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-radius: 9999px;
+            padding: 0.35rem 0.35rem 0.35rem 1.25rem;
             transition: border-color 0.3s ease, box-shadow 0.3s ease;
         }
 
         .lock-input-wrap:focus-within {
-            border-color: var(--accent-rose);
-            box-shadow: 0 0 0 3px rgba(226, 125, 142, 0.25), 0 0 30px rgba(226, 125, 142, 0.35);
+            border-color: #e27d8e;
+            box-shadow: 0 0 0 3px rgba(226, 125, 142, 0.3), 0 0 30px rgba(226, 125, 142, 0.4);
         }
 
         .lock-input {
@@ -1291,7 +1299,7 @@
             border: none;
             outline: none;
             color: #ffffff;
-            font-family: var(--font-body);
+            font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
             font-size: 1rem;
             font-weight: 500;
             letter-spacing: 0.02em;
@@ -1299,7 +1307,7 @@
         }
 
         .lock-input::placeholder {
-            color: var(--text-muted);
+            color: #847282;
             font-size: 0.9rem;
         }
 
@@ -1308,22 +1316,22 @@
             align-items: center;
             gap: 0.5rem;
             background: linear-gradient(135deg, #e27d8e, #c9184a);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: none;
             color: #ffffff;
-            font-family: var(--font-body);
+            font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
             font-weight: 600;
             font-size: 0.9rem;
-            padding: 0.65rem 1.25rem;
-            border-radius: var(--radius-pill);
+            padding: 0.75rem 1.4rem;
+            border-radius: 9999px;
             cursor: pointer;
-            box-shadow: 0 4px 15px rgba(201, 24, 74, 0.4);
-            transition: transform 0.2s var(--ease-spring), box-shadow 0.2s ease, filter 0.2s ease;
+            box-shadow: 0 4px 15px rgba(201, 24, 74, 0.5);
+            transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease, filter 0.2s ease;
             flex-shrink: 0;
         }
 
         .lock-submit-btn:hover {
             transform: scale(1.04);
-            box-shadow: 0 6px 20px rgba(201, 24, 74, 0.6);
+            box-shadow: 0 6px 22px rgba(201, 24, 74, 0.7);
             filter: brightness(1.1);
         }
 
@@ -1334,7 +1342,7 @@
         .lock-error-msg {
             min-height: 1.4rem;
             margin-top: 0.85rem;
-            font-size: 0.82rem;
+            font-size: 0.84rem;
             font-weight: 500;
             color: #ff6b81;
             transition: opacity 0.3s ease;
@@ -1343,9 +1351,9 @@
         .lock-hint-footer {
             margin-top: 1.25rem;
             padding-top: 1.25rem;
-            border-top: 1px solid var(--border-outer);
-            font-size: 0.8rem;
-            color: var(--text-muted);
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            font-size: 0.82rem;
+            color: #847282;
         }
 
         .lock-shake {
@@ -1353,8 +1361,8 @@
         }
 
         @keyframes lock-shake-anim {
-            10%, 90% { transform: translate3d(-3px, 0, 0); }
-            20%, 80% { transform: translate3d(5px, 0, 0); }
+            10%, 90% { transform: translate3d(-4px, 0, 0); }
+            20%, 80% { transform: translate3d(6px, 0, 0); }
             30%, 50%, 70% { transform: translate3d(-6px, 0, 0); }
             40%, 60% { transform: translate3d(6px, 0, 0); }
         }
@@ -1365,7 +1373,7 @@
 
         @keyframes lock-success-pulse {
             0% { transform: scale(1); }
-            50% { transform: scale(1.15); filter: drop-shadow(0 0 35px #ff5b79); }
+            50% { transform: scale(1.2); filter: drop-shadow(0 0 35px #ff5b79); }
             100% { transform: scale(1); }
         }
     </style>
