@@ -1834,8 +1834,10 @@
         </div>
     </footer>
 
-    <!-- Audio Element (Juanes - Es Por Ti en Bucle) -->
-    <audio id="bg-audio" loop preload="auto">
+    <!-- Audio Element (Juanes - Es Por Ti en Bucle Optimizado) -->
+    <audio id="bg-audio" loop preload="auto" playsinline>
+        <source src="es-por-ti.webm" type="audio/webm; codecs=opus">
+        <source src="es-por-ti.m4a" type="audio/mp4">
         <source src="es-por-ti.mp3" type="audio/mpeg">
     </audio>
 
@@ -1969,8 +1971,45 @@
                 if (CONFIG.photos.moto.frontPos) pol3.style.objectPosition = CONFIG.photos.moto.frontPos;
             }
 
-            // Video & Audio Coexistence (Pausar música al reproducir video y reanudar al pausar/terminar)
+            // Audio de Fondo en Bucle (Juanes - Es por ti) - Inicialización y Estado
+            let isMusicPlaying = false;
             let wasMusicPlayingBeforeVideo = false;
+            const musicBtn = document.getElementById('music-btn');
+            const bgAudio = document.getElementById('bg-audio');
+            if (bgAudio) {
+                bgAudio.loop = true;
+                bgAudio.volume = 0.8;
+                // Disparar precarga acelerada del source seleccionado por el navegador
+                try {
+                    bgAudio.load();
+                } catch (e) {}
+            }
+
+            // Precarga anticipada y desbloqueo de hardware en el primer toque (Mobile zero-latency)
+            let audioPrimed = false;
+            function primeAudioPipeline() {
+                if (audioPrimed) return;
+                audioPrimed = true;
+                if (bgAudio && bgAudio.paused && !isMusicPlaying) {
+                    const silentPromise = bgAudio.play();
+                    if (silentPromise !== undefined) {
+                        silentPromise.then(() => {
+                            // Si la pantalla sigue bloqueada con clave, pausar en 0s con buffer listo en RAM
+                            if (document.body.classList.contains('is-locked')) {
+                                bgAudio.pause();
+                                bgAudio.currentTime = 0;
+                            } else {
+                                isMusicPlaying = true;
+                                if (musicBtn) musicBtn.classList.add('music-playing');
+                            }
+                        }).catch(() => {});
+                    }
+                }
+            }
+            window.addEventListener('pointerdown', primeAudioPipeline, { once: true, passive: true });
+            window.addEventListener('keydown', primeAudioPipeline, { once: true, passive: true });
+
+            // Video & Audio Coexistence (Pausar música al reproducir video y reanudar al pausar/terminar)
             const mainVideo = document.getElementById('main-video');
             const mainVideoSrc = document.getElementById('main-video-src');
             if (mainVideo) {
@@ -2006,14 +2045,6 @@
             const anniversaryDisplay = document.getElementById('anniversary-display');
             if (anniversaryDisplay) {
                 anniversaryDisplay.textContent = CONFIG.anniversaryLabel;
-            }
-
-            // Audio de Fondo en Bucle (Juanes - Es por ti)
-            const bgAudio = document.getElementById('bg-audio');
-            if (bgAudio) {
-                bgAudio.src = CONFIG.music.src;
-                bgAudio.loop = true;
-                bgAudio.volume = 0.8;
             }
 
             /* 1.1 INTERACCIÓN DE TARJETAS 3D FLIP */
@@ -2246,9 +2277,6 @@
 
             /* 11. WEB AUDIO API SYNTHESIZER & BACKGROUND AUDIO */
             let audioCtx = null;
-            let isMusicPlaying = false;
-            const musicBtn = document.getElementById('music-btn');
-
             const chords = [
                 [349.23, 440.00, 523.25, 659.25], // Fmaj7
                 [261.63, 329.63, 392.00, 493.88], // Cmaj7
@@ -2284,28 +2312,47 @@
                 });
             }
 
-            musicBtn.addEventListener('click', () => {
-                if (!isMusicPlaying) {
-                    bgAudio.play().then(() => {
+            function startBackgroundMusic() {
+                if (!bgAudio) return;
+                const playPromise = bgAudio.play();
+                if (playPromise !== undefined) {
+                    playPromise.then(() => {
                         isMusicPlaying = true;
-                        musicBtn.classList.add('music-playing');
-                    }).catch(() => {
+                        if (musicBtn) musicBtn.classList.add('music-playing');
+                        if (synthTimer) {
+                            clearInterval(synthTimer);
+                            synthTimer = null;
+                        }
+                    }).catch((err) => {
+                        console.warn("Fallo reproducción directa de audio HTML5, usando sintetizador:", err);
                         if (!audioCtx) {
                             audioCtx = new (window.AudioContext || window.webkitAudioContext)();
                         }
                         if (audioCtx.state === 'suspended') audioCtx.resume();
                         isMusicPlaying = true;
-                        musicBtn.classList.add('music-playing');
+                        if (musicBtn) musicBtn.classList.add('music-playing');
                         playChord();
+                        if (synthTimer) clearInterval(synthTimer);
                         synthTimer = setInterval(playChord, 3800);
                     });
-                } else {
-                    isMusicPlaying = false;
-                    musicBtn.classList.remove('music-playing');
-                    bgAudio.pause();
-                    if (synthTimer) clearInterval(synthTimer);
                 }
-            });
+            }
+
+            if (musicBtn) {
+                musicBtn.addEventListener('click', () => {
+                    if (!isMusicPlaying) {
+                        startBackgroundMusic();
+                    } else {
+                        isMusicPlaying = false;
+                        musicBtn.classList.remove('music-playing');
+                        bgAudio.pause();
+                        if (synthTimer) {
+                            clearInterval(synthTimer);
+                            synthTimer = null;
+                        }
+                    }
+                });
+            }
 
             /* 12. GSAP ENTRANCE & PARALLAX SCROLLTRIGGERS */
             if (window.gsap) {
@@ -2381,9 +2428,9 @@
                         }
                         document.body.classList.remove('is-locked');
 
-                        // Si la música no está sonando, encender la melodía romántica
-                        if (!isMusicPlaying && musicBtn) {
-                            musicBtn.click();
+                        // Si la música no está sonando, encender la melodía romántica de inmediato
+                        if (!isMusicPlaying) {
+                            startBackgroundMusic();
                         }
 
                         // Re-activar refresco de GSAP ScrollTriggers
