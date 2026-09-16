@@ -1969,13 +1969,37 @@
                 if (CONFIG.photos.moto.frontPos) pol3.style.objectPosition = CONFIG.photos.moto.frontPos;
             }
 
-            // Video
+            // Video & Audio Coexistence (Pausar música al reproducir video y reanudar al pausar/terminar)
+            let wasMusicPlayingBeforeVideo = false;
             const mainVideo = document.getElementById('main-video');
             const mainVideoSrc = document.getElementById('main-video-src');
             if (mainVideo) {
                 mainVideo.poster = CONFIG.video.poster;
                 if (mainVideoSrc) mainVideoSrc.src = CONFIG.video.src;
                 mainVideo.load();
+
+                // Al iniciar el video, pausar la música de fondo si estaba sonando
+                mainVideo.addEventListener('play', () => {
+                    wasMusicPlayingBeforeVideo = isMusicPlaying || (bgAudio && !bgAudio.paused);
+                    if (bgAudio && !bgAudio.paused) {
+                        bgAudio.pause();
+                        isMusicPlaying = false;
+                        if (musicBtn) musicBtn.classList.remove('music-playing');
+                    }
+                });
+
+                // Al pausar o terminar el video, reanudar la música de fondo
+                const resumeMusic = () => {
+                    if (wasMusicPlayingBeforeVideo && bgAudio) {
+                        bgAudio.play().then(() => {
+                            isMusicPlaying = true;
+                            if (musicBtn) musicBtn.classList.add('music-playing');
+                        }).catch(() => {});
+                    }
+                };
+
+                mainVideo.addEventListener('pause', resumeMusic);
+                mainVideo.addEventListener('ended', resumeMusic);
             }
 
             // Anniversary Label
