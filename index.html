@@ -1348,12 +1348,238 @@
             transition: opacity 0.3s ease;
         }
 
-        .lock-hint-footer {
-            margin-top: 1.25rem;
-            padding-top: 1.25rem;
+        /* Botón Solicitar Pista y Modal Romántico */
+        .lock-hint-action-row {
+            margin-top: 1.15rem;
+            padding-top: 1.15rem;
             border-top: 1px solid rgba(255, 255, 255, 0.08);
-            font-size: 0.82rem;
-            color: #847282;
+            display: flex;
+            justify-content: center;
+        }
+
+        .hint-request-btn {
+            background: rgba(226, 125, 142, 0.12);
+            border: 1px solid rgba(226, 125, 142, 0.35);
+            color: #fce7eb;
+            font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+            font-size: 0.88rem;
+            font-weight: 600;
+            padding: 0.6rem 1.35rem;
+            border-radius: 9999px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.55rem;
+            box-shadow: 0 4px 20px rgba(226, 125, 142, 0.15);
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+        }
+
+        .hint-request-btn:hover {
+            background: rgba(226, 125, 142, 0.22);
+            border-color: rgba(226, 125, 142, 0.6);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(226, 125, 142, 0.3);
+            color: #ffffff;
+        }
+
+        .hint-request-btn:active {
+            transform: scale(0.97);
+        }
+
+        .hint-status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #ff5b79;
+            box-shadow: 0 0 10px #ff5b79;
+            animation: pulse-dot 1.8s infinite;
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.4); opacity: 0.6; }
+        }
+
+        /* Modal Romántico de Pistas */
+        .hint-modal-overlay {
+            position: absolute;
+            inset: 0;
+            z-index: 1000010;
+            background: rgba(18, 13, 23, 0.97);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: calc(2.25rem - 0.5rem);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1.6rem;
+            animation: hint-modal-in 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes hint-modal-in {
+            0% { opacity: 0; transform: scale(0.94); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        .hint-modal-card {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .hint-modal-close-x {
+            position: absolute;
+            top: -0.85rem;
+            right: -0.65rem;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #c7b8c4;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .hint-modal-close-x:hover {
+            background: rgba(226, 125, 142, 0.25);
+            color: #ffffff;
+            transform: scale(1.1);
+        }
+
+        .hint-modal-icon-wrap {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 35% 35%, rgba(226, 125, 142, 0.35), rgba(201, 24, 74, 0.18));
+            border: 1.5px solid rgba(226, 125, 142, 0.45);
+            box-shadow: 0 0 25px rgba(226, 125, 142, 0.35);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.85rem;
+            margin-bottom: 0.9rem;
+            animation: lock-heartbeat 2s infinite ease-in-out;
+        }
+
+        .hint-modal-title {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: clamp(1.2rem, 3.5vw, 1.45rem);
+            color: #fcf9fa;
+            line-height: 1.25;
+            margin-bottom: 1.1rem;
+        }
+
+        .hint-modal-body {
+            width: 100%;
+            margin-bottom: 1.35rem;
+        }
+
+        .hint-req-content {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .hint-sweet-rule {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(226, 125, 142, 0.22);
+            border-radius: 1.1rem;
+            padding: 0.85rem 1rem;
+            font-size: 0.9rem;
+            color: #f2e9ee;
+            line-height: 1.55;
+            text-align: center;
+        }
+
+        .hint-sweet-divider {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: #e5b98f;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+        }
+
+        .hint-sweet-divider::before,
+        .hint-sweet-divider::after {
+            content: '';
+            display: inline-block;
+            width: 25px;
+            height: 1px;
+            background: rgba(229, 185, 143, 0.35);
+        }
+
+        .hint-sweet-note {
+            font-size: 0.8rem;
+            color: #c7b8c4;
+            font-style: italic;
+            margin-top: 0.2rem;
+            line-height: 1.45;
+        }
+
+        .hint-card-item {
+            background: linear-gradient(135deg, rgba(226, 125, 142, 0.15), rgba(20, 15, 25, 0.8));
+            border: 1px solid rgba(226, 125, 142, 0.45);
+            border-radius: 1.1rem;
+            padding: 0.85rem 1.1rem;
+            text-align: left;
+            margin-bottom: 0.6rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        .hint-card-tag {
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            font-weight: 700;
+            color: #e5b98f;
+            margin-bottom: 0.25rem;
+        }
+
+        .hint-card-text {
+            font-size: 0.95rem;
+            color: #ffffff;
+            line-height: 1.45;
+        }
+
+        .hint-modal-footer {
+            width: 100%;
+        }
+
+        .hint-modal-confirm-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #e27d8e, #c9184a);
+            border: none;
+            color: #ffffff;
+            font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+            font-weight: 600;
+            font-size: 0.92rem;
+            padding: 0.75rem 1.4rem;
+            border-radius: 9999px;
+            cursor: pointer;
+            box-shadow: 0 4px 18px rgba(201, 24, 74, 0.5);
+            transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), filter 0.2s ease;
+        }
+
+        .hint-modal-confirm-btn:hover {
+            transform: scale(1.02);
+            filter: brightness(1.1);
+        }
+
+        .hint-modal-confirm-btn:active {
+            transform: scale(0.97);
         }
 
         .lock-shake {
@@ -1392,7 +1618,7 @@
                 <div class="lock-badge">ESPACIO PRIVADO DE NUESTRO AMOR</div>
                 <h2 class="lock-title" id="lock-title">Un Secreto Solo Para Ti</h2>
                 <p class="lock-desc">
-                    Para abrir este cofre de recuerdos, escribe las dos palabras mágicas que guardan la llave de mi corazón:
+                    Para abrir este cofre de recuerdos, escribe las palabras mágicas que guardan la llave de mi corazón:
                 </p>
 
                 <form id="lock-form" class="lock-form" onsubmit="return false;">
@@ -1418,8 +1644,32 @@
                     <p id="lock-error-msg" class="lock-error-msg" aria-live="polite"></p>
                 </form>
 
-                <div class="lock-hint-footer">
-                    <span>💡 Pista: Instagram (2 palabras)</span>
+                <!-- Botón Solicitar Pista -->
+                <div class="lock-hint-action-row">
+                    <button type="button" id="btn-request-hint" class="hint-request-btn" title="Haz clic para solicitar una pista de amor">
+                        <span class="hint-request-icon">💡</span>
+                        <span>Solicitar Pista</span>
+                        <span id="hint-status-dot" class="hint-status-dot" style="display: none;"></span>
+                    </button>
+                </div>
+
+                <!-- Modal Romántico de Pistas (Solicitud de Besos/Abrazos o Pistas Desbloqueadas) -->
+                <div id="hint-modal" class="hint-modal-overlay" style="display: none;" role="dialog" aria-modal="true" aria-labelledby="hint-modal-title">
+                    <div class="hint-modal-card">
+                        <button type="button" id="btn-close-hint-x" class="hint-modal-close-x" aria-label="Cerrar modal de pistas">×</button>
+                        <div class="hint-modal-icon-wrap" id="hint-modal-icon">
+                            <span>💋</span>
+                        </div>
+                        <h3 class="hint-modal-title" id="hint-modal-title">¿Necesitas una pista, mi amor?</h3>
+                        <div id="hint-modal-body" class="hint-modal-body">
+                            <!-- Contenido inyectado dinámicamente según nivel de pista -->
+                        </div>
+                        <div class="hint-modal-footer">
+                            <button type="button" id="btn-close-hint" class="hint-modal-confirm-btn">
+                                <span>¡Entendido! ❤️</span>
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -2391,6 +2641,201 @@
             const lockCardShell = document.getElementById('lock-card-shell');
             const lockHeartIcon = document.getElementById('lock-heart-icon');
 
+            // Elementos del Modal de Pistas
+            const btnRequestHint = document.getElementById('btn-request-hint');
+            const hintModal = document.getElementById('hint-modal');
+            const hintModalBody = document.getElementById('hint-modal-body');
+            const hintModalIcon = document.getElementById('hint-modal-icon');
+            const btnCloseHint = document.getElementById('btn-close-hint');
+            const btnCloseHintX = document.getElementById('btn-close-hint-x');
+            const hintStatusDot = document.getElementById('hint-status-dot');
+
+            // =========================================================
+            // 💡 SISTEMA DINÁMICO DE PISTAS Y MODO ADMINISTRADOR
+            // =========================================================
+            const CLOUD_HINT_URL = 'https://api.restful-api.dev/objects/ff808181a09d98f701a0b01e031b2afb';
+            const SECONDARY_NTFY_URL = 'https://ntfy.sh/pagesept_hints_9482';
+
+            // Nivel de pista (0: Ninguna, 1: "Son dos palabras", 2: "Instagram")
+            let currentHintLevel = parseInt(localStorage.getItem('pagesept_hint_level') || '0', 10);
+            if (isNaN(currentHintLevel)) currentHintLevel = 0;
+
+            // Soporte de inicialización forzada por URL (?pista=1 o ?pista=2 o ?admin=1)
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.has('pista')) {
+                const pVal = parseInt(urlParams.get('pista'), 10);
+                if (!isNaN(pVal) && pVal >= 0 && pVal <= 2) {
+                    currentHintLevel = pVal;
+                    localStorage.setItem('pagesept_hint_level', currentHintLevel);
+                }
+            }
+
+            function updateHintBadgeUI() {
+                if (hintStatusDot) {
+                    hintStatusDot.style.display = currentHintLevel > 0 ? 'inline-block' : 'none';
+                }
+            }
+            updateHintBadgeUI();
+
+            // Carga asíncrona de pista desde la nube para sincronizar entre dispositivos
+            async function fetchRemoteHintLevel() {
+                try {
+                    const res = await fetch(CLOUD_HINT_URL, { cache: 'no-store' });
+                    if (res.ok) {
+                        const json = await res.json();
+                        if (json && json.data && typeof json.data.hintLevel === 'number') {
+                            currentHintLevel = Math.max(0, Math.min(2, json.data.hintLevel));
+                            localStorage.setItem('pagesept_hint_level', currentHintLevel);
+                            updateHintBadgeUI();
+                            return currentHintLevel;
+                        }
+                    }
+                } catch (err) {
+                    console.warn("No se pudo sincronizar pista con la nube, usando almacenamiento local:", err);
+                }
+                return currentHintLevel;
+            }
+
+            // Consultar la nube de inmediato al cargar la página
+            fetchRemoteHintLevel();
+
+            // Renderizar contenido del modal según el nivel de pista activo
+            function renderHintModalContent() {
+                if (!hintModalBody) return;
+
+                if (currentHintLevel === 0) {
+                    // Nivel 0: Aún no habilitada por el Admin
+                    if (hintModalIcon) hintModalIcon.innerHTML = '<span>💋</span>';
+                    hintModalBody.innerHTML = `
+                        <div class="hint-req-content">
+                            <div class="hint-sweet-rule">
+                                💋 <strong>Para obtener una pista:</strong><br>
+                                Deberás darle un dulce beso con mucho amor al amor de tu vida...
+                            </div>
+                            <div class="hint-sweet-divider"><span>O TAMBIÉN</span></div>
+                            <div class="hint-sweet-rule">
+                                🤗 <strong>¡Un abrazo muy fuerte!</strong><br>
+                                De esos apretados y calientitos que te reinician el alma...
+                            </div>
+                            <p class="hint-sweet-note">
+                                Pídeselo con tu sonrisa más tierna para que te active la pista desde su celular... 💌
+                            </p>
+                        </div>
+                    `;
+                } else if (currentHintLevel === 1) {
+                    // Nivel 1: Pista 1 activa ("Son dos palabras")
+                    if (hintModalIcon) hintModalIcon.innerHTML = '<span>🗝️</span>';
+                    hintModalBody.innerHTML = `
+                        <div class="hint-req-content">
+                            <p class="hint-sweet-rule" style="background: rgba(226, 125, 142, 0.18); border-color: rgba(226, 125, 142, 0.5);">
+                                ✨ <em>¡Beso o abrazo concedido con amor! Aquí está tu primera pista:</em>
+                            </p>
+                            <div class="hint-card-item">
+                                <div class="hint-card-tag">Pista 1:</div>
+                                <div class="hint-card-text">La clave secreta está compuesta exactamente por <strong>dos palabras</strong>.</div>
+                            </div>
+                            <p class="hint-sweet-note">
+                                ¿Aún no sabes cuáles son? Pídele la siguiente pista con otro beso o abrazo... 😉❤️
+                            </p>
+                        </div>
+                    `;
+                } else {
+                    // Nivel 2: Ambas pistas activas ("Son dos palabras" e "Instagram")
+                    if (hintModalIcon) hintModalIcon.innerHTML = '<span>📸</span>';
+                    hintModalBody.innerHTML = `
+                        <div class="hint-req-content">
+                            <p class="hint-sweet-rule" style="background: rgba(226, 125, 142, 0.18); border-color: rgba(226, 125, 142, 0.5);">
+                                ✨ <em>¡Todo el amor recibido! Tienes todas las pistas:</em>
+                            </p>
+                            <div class="hint-card-item">
+                                <div class="hint-card-tag">Pista 1:</div>
+                                <div class="hint-card-text">Son <strong>dos palabras</strong>.</div>
+                            </div>
+                            <div class="hint-card-item">
+                                <div class="hint-card-tag">Pista 2:</div>
+                                <div class="hint-card-text">Búscalas en <strong>Instagram</strong> 📸 (en tu perfil o biografía especial).</div>
+                            </div>
+                            <p class="hint-sweet-note">
+                                ¡Ya tienes la llave para abrir nuestro cofre de recuerdos! 💖
+                            </p>
+                        </div>
+                    `;
+                }
+            }
+
+            // Abrir y cerrar modal de pistas
+            function openHintModal() {
+                renderHintModalContent();
+                if (hintModal) {
+                    hintModal.style.display = 'flex';
+                    createBurst(window.innerWidth / 2, window.innerHeight / 2, 8);
+                }
+                // Refrescar en segundo plano para obtener de inmediato cualquier cambio reciente
+                fetchRemoteHintLevel().then(() => {
+                    renderHintModalContent();
+                });
+            }
+
+            function closeHintModal() {
+                if (hintModal) hintModal.style.display = 'none';
+            }
+
+            if (btnRequestHint) btnRequestHint.addEventListener('click', openHintModal);
+            if (btnCloseHint) btnCloseHint.addEventListener('click', closeHintModal);
+            if (btnCloseHintX) btnCloseHintX.addEventListener('click', closeHintModal);
+
+            // MODO ADMINISTRADOR: Activar pistas desde el celular del novio
+            async function handleAdminCommand(rawVal) {
+                const norm = rawVal.toLowerCase().trim();
+                let nextLevel = currentHintLevel;
+
+                if (norm.includes('reset') || norm.includes('0')) {
+                    nextLevel = 0;
+                } else if (norm.includes('2')) {
+                    nextLevel = 2;
+                } else if (norm.includes('1')) {
+                    nextLevel = 1;
+                } else {
+                    // "admin" simple: avanza 0 -> 1 -> 2 (máximo 2 pistas)
+                    if (currentHintLevel === 0) nextLevel = 1;
+                    else if (currentHintLevel === 1) nextLevel = 2;
+                    else nextLevel = 2;
+                }
+
+                currentHintLevel = nextLevel;
+                localStorage.setItem('pagesept_hint_level', nextLevel);
+                updateHintBadgeUI();
+
+                if (lockInput) lockInput.value = '';
+                if (lockError) {
+                    lockError.style.color = '#70e000';
+                    if (nextLevel === 0) {
+                        lockError.textContent = '👑 Modo Admin: Pistas reiniciadas a 0. Deberá pedirte besos de nuevo.';
+                    } else if (nextLevel === 1) {
+                        lockError.textContent = '👑 ¡Modo Admin! Pista 1 habilitada ("Son dos palabras"). En su celular ya aparecerá al recargar.';
+                    } else {
+                        lockError.textContent = '👑 ¡Modo Admin! Pista 2 habilitada ("Instagram"). Ambas pistas ya están listas.';
+                    }
+                }
+
+                createBurst(window.innerWidth / 2, window.innerHeight / 2, 25);
+
+                // Guardar en la nube para sincronizar con el celular de ella
+                try {
+                    await fetch(CLOUD_HINT_URL, {
+                        method: 'PUT',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            name: 'PageSeptHints',
+                            data: { hintLevel: nextLevel, lastUpdated: new Date().toISOString() }
+                        })
+                    });
+                    fetch(SECONDARY_NTFY_URL, { method: 'POST', body: 'hint_' + nextLevel }).catch(() => {});
+                } catch (e) {
+                    console.warn("Error sincronizando estado de pistas en la nube:", e);
+                }
+            }
+
             function handleUnlockAttempt() {
                 if (!lockInput) return;
                 const rawVal = lockInput.value.trim();
@@ -2398,6 +2843,12 @@
                 // Normalizar: minúsculas, sin tildes, sin signos ni espacios
                 const norm = rawVal.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
                 const stripped = norm.replace(/[^a-z0-9]/g, "");
+
+                // Detectar comando de Administrador (admin, Admin, ADMIN, admin 1, admin 2, admin reset)
+                if (stripped === "admin" || norm.startsWith("admin ") || norm.startsWith("admin")) {
+                    handleAdminCommand(norm);
+                    return;
+                }
 
                 // Aceptar con espacio, sin espacio, mayúsculas, minúsculas o variantes
                 const isMatch = stripped === "solotuya" ||
@@ -2450,7 +2901,7 @@
                     if (!rawVal) {
                         lockError.textContent = 'Por favor escribe la clave mágica...';
                     } else {
-                        lockError.textContent = 'Esa no es la respuesta... Pista: Instagram 💭';
+                        lockError.textContent = 'Esa no es la clave secreta, mi amor... Intenta de nuevo o solicita una pista ❤️';
                     }
                     lockInput.select();
                 }
