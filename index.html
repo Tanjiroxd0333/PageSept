@@ -1611,28 +1611,43 @@
         }
 
         .hint-card-item {
-            background: linear-gradient(135deg, rgba(226, 125, 142, 0.15), rgba(20, 15, 25, 0.8));
+            background: linear-gradient(135deg, rgba(226, 125, 142, 0.16), rgba(20, 15, 25, 0.88));
             border: 1px solid rgba(226, 125, 142, 0.45);
-            border-radius: 1.1rem;
-            padding: 0.85rem 1.1rem;
+            border-radius: 1.15rem;
+            padding: 1rem 1.15rem;
             text-align: left;
-            margin-bottom: 0.6rem;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+            margin-bottom: 0.75rem;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.45);
         }
 
         .hint-card-tag {
-            font-size: 0.72rem;
+            font-size: 0.76rem;
             text-transform: uppercase;
             letter-spacing: 0.12em;
             font-weight: 700;
             color: #e5b98f;
-            margin-bottom: 0.25rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
         }
 
-        .hint-card-text {
-            font-size: 0.95rem;
+        .hint-card-riddle {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 1.16rem;
             color: #ffffff;
-            line-height: 1.45;
+            line-height: 1.55;
+            font-style: italic;
+            margin-bottom: 0.55rem;
+        }
+
+        .hint-card-clue {
+            font-size: 0.84rem;
+            color: #e27d8e;
+            font-weight: 500;
+            line-height: 1.4;
+            padding-top: 0.45rem;
+            border-top: 1px dashed rgba(226, 125, 142, 0.25);
         }
 
         .hint-modal-footer {
@@ -2829,40 +2844,61 @@
                         </div>
                     `;
                 } else if (currentHintLevel === 1) {
-                    // Nivel 1: Pista 1 activa ("Son dos palabras")
+                    // Nivel 1: Adivinanza 1 activa ("Dos palabras")
                     if (hintModalIcon) hintModalIcon.innerHTML = '<span>🗝️</span>';
                     hintModalBody.innerHTML = `
                         <div class="hint-req-content">
                             <p class="hint-sweet-rule" style="background: rgba(226, 125, 142, 0.18); border-color: rgba(226, 125, 142, 0.5);">
-                                ✨ <em>¡Beso o abrazo concedido con amor! Aquí está tu primera pista:</em>
+                                ✨ <em>¡Beso o abrazo concedido con amor! Aquí tienes tu primer acertijo:</em>
                             </p>
                             <div class="hint-card-item">
-                                <div class="hint-card-tag">Pista 1:</div>
-                                <div class="hint-card-text">La clave secreta está compuesta exactamente por <strong>dos palabras</strong>.</div>
+                                <div class="hint-card-tag">🧩 Adivinanza 1: La Forma del Secreto</div>
+                                <div class="hint-card-riddle">
+                                    «No vengo sola al mundo porque el amor verdadero siempre florece en pareja, pero tampoco soy un largo cuento que cansa a quien la queja.<br><br>
+                                    Si cuentas cuántas partes me forman al hablar, hallarás el número exacto que tú y yo solemos sumar.<br>
+                                    ¿Cuántas palabras componen la llave de este cofre?»
+                                </div>
+                                <div class="hint-card-clue">
+                                    💡 <em>Pista: Ni una sola, ni tres... somos exactamente un par de palabras hechas a nuestra medida.</em>
+                                </div>
                             </div>
                             <p class="hint-sweet-note">
-                                ¿Aún no sabes cuáles son? Pídele la siguiente pista con otro beso o abrazo... 😉❤️
+                                ¿Aún no sabes cuáles son? Pídele la segunda adivinanza con otro beso o abrazo... 😉❤️
                             </p>
                         </div>
                     `;
                 } else {
-                    // Nivel 2: Ambas pistas activas ("Son dos palabras" e "Instagram")
+                    // Nivel 2: Ambas adivinanzas activas ("Dos palabras" e "Instagram")
                     if (hintModalIcon) hintModalIcon.innerHTML = '<span>📸</span>';
                     hintModalBody.innerHTML = `
                         <div class="hint-req-content">
                             <p class="hint-sweet-rule" style="background: rgba(226, 125, 142, 0.18); border-color: rgba(226, 125, 142, 0.5);">
-                                ✨ <em>¡Todo el amor recibido! Tienes todas las pistas:</em>
+                                ✨ <em>¡Todo el amor recibido! Tienes los dos acertijos para abrir el cofre:</em>
                             </p>
                             <div class="hint-card-item">
-                                <div class="hint-card-tag">Pista 1:</div>
-                                <div class="hint-card-text">Son <strong>dos palabras</strong>.</div>
+                                <div class="hint-card-tag">🧩 Adivinanza 1: La Forma del Secreto</div>
+                                <div class="hint-card-riddle">
+                                    «No vengo sola al mundo porque el amor verdadero siempre florece en pareja, pero tampoco soy un largo cuento que cansa a quien la queja.<br><br>
+                                    Si cuentas cuántas partes me forman al hablar, hallarás el número exacto que tú y yo solemos sumar.<br>
+                                    ¿Cuántas palabras componen la llave de este cofre?»
+                                </div>
+                                <div class="hint-card-clue">
+                                    💡 <em>Pista: Ni una sola, ni tres... somos exactamente un par de palabras hechas a nuestra medida.</em>
+                                </div>
                             </div>
                             <div class="hint-card-item">
-                                <div class="hint-card-tag">Pista 2:</div>
-                                <div class="hint-card-text">Búscalas en <strong>Instagram</strong> 📸 (en tu perfil o biografía especial).</div>
+                                <div class="hint-card-tag">🧩 Adivinanza 2: El Lugar Donde Me Escondo</div>
+                                <div class="hint-card-riddle">
+                                    «Tengo un logo con colores de atardecer, donde las fotos vuelan y las historias duran solo un amanecer.<br><br>
+                                    En un rincón especial de tu propio perfil me dejaste grabada en letras para que no te olvidaras de mí.<br>
+                                    ¿En qué aplicación está escrita la promesa que hoy te hará sonreír?»
+                                </div>
+                                <div class="hint-card-clue">
+                                    📸 <em>Pista: La red social de los corazones rojos, las historias y tu biografía...</em>
+                                </div>
                             </div>
                             <p class="hint-sweet-note">
-                                ¡Ya tienes la llave para abrir nuestro cofre de recuerdos! 💖
+                                ¡Une las dos adivinanzas y escribe la frase para abrir nuestro cofre! 💖
                             </p>
                         </div>
                     `;
@@ -2918,9 +2954,9 @@
                     if (nextLevel === 0) {
                         lockError.textContent = '👑 Modo Admin: Pistas reiniciadas a 0. Deberá pedirte besos de nuevo.';
                     } else if (nextLevel === 1) {
-                        lockError.textContent = '👑 ¡Modo Admin! Pista 1 habilitada ("Son dos palabras"). En su celular ya aparecerá al recargar.';
+                        lockError.textContent = '👑 ¡Modo Admin! Adivinanza 1 habilitada ("La forma del secreto - Dos palabras"). En su celular ya aparecerá al recargar.';
                     } else {
-                        lockError.textContent = '👑 ¡Modo Admin! Pista 2 habilitada ("Instagram"). Ambas pistas ya están listas.';
+                        lockError.textContent = '👑 ¡Modo Admin! Adivinanza 2 habilitada ("El lugar secreto - Instagram"). Ambas adivinanzas ya están listas.';
                     }
                 }
 
