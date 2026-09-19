@@ -16,6 +16,16 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Playfair+Display:ital,wght@0,500;0,700;0,900;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Sacramento&display=swap" rel="stylesheet">
 
+    <!-- High-Priority Background Preload for Video and Chapter Photos -->
+    <link rel="preload" as="image" href="Imagenes/Capitulo1_Frontal.jpeg" fetchpriority="high">
+    <link rel="preload" as="image" href="Imagenes/Capitulo1_Trasera.jpeg" fetchpriority="high">
+    <link rel="preload" as="image" href="Imagenes/Capitulo2_Frontal.jpeg" fetchpriority="high">
+    <link rel="preload" as="image" href="Imagenes/Capitulo2_Trasera.jpeg" fetchpriority="high">
+    <link rel="preload" as="image" href="Imagenes/Capitulo3_Frontal.jpeg" fetchpriority="high">
+    <link rel="preload" as="image" href="Imagenes/Capitulo3_Trasera.jpeg" fetchpriority="high">
+    <link rel="preload" as="image" href="Imagenes/video_poster.jpg" fetchpriority="high">
+    <link rel="preload" as="video" href="videoFinal.mp4" type="video/mp4">
+
     <!-- GSAP & ScrollTrigger for Elite Motion -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
@@ -2076,7 +2086,7 @@
                                 <div class="flip-card-inner">
                                     <!-- Cara frontal: Foto 1 -->
                                     <div class="flip-card-face flip-card-front">
-                                        <img src="" alt="Nuestra foto en la playa al atardecer" id="img-beach-front">
+                                        <img src="Imagenes/Capitulo1_Frontal.jpeg" alt="Nuestra foto en la playa al atardecer" id="img-beach-front" loading="eager" fetchpriority="high">
                                         <div class="photo-vignette"></div>
                                         <div class="flip-hint-badge">
                                             <span class="flip-badge-icon">🔄</span>
@@ -2088,7 +2098,7 @@
                                     </div>
                                     <!-- Cara trasera: Foto 2 -->
                                     <div class="flip-card-face flip-card-back">
-                                        <img src="" alt="Momento especial en la playa" id="img-beach-back">
+                                        <img src="Imagenes/Capitulo1_Trasera.jpeg" alt="Momento especial en la playa" id="img-beach-back" loading="eager" fetchpriority="high">
                                         <div class="photo-vignette"></div>
                                         <div class="flip-hint-badge">
                                             <span class="flip-badge-icon">↩️</span>
@@ -2139,7 +2149,7 @@
                                 <div class="flip-card-inner">
                                     <!-- Cara frontal: Foto 1 -->
                                     <div class="flip-card-face flip-card-front">
-                                        <img src="" alt="Comiendo hamburguesa juntos" id="img-burgers-front">
+                                        <img src="Imagenes/Capitulo2_Frontal.jpeg" alt="Comiendo hamburguesa juntos" id="img-burgers-front" loading="eager" fetchpriority="high">
                                         <div class="photo-vignette"></div>
                                         <div class="flip-hint-badge">
                                             <span class="flip-badge-icon">🔄</span>
@@ -2151,7 +2161,7 @@
                                     </div>
                                     <!-- Cara trasera: Foto 2 -->
                                     <div class="flip-card-face flip-card-back">
-                                        <img src="" alt="Otro momento feliz comiendo juntos" id="img-burgers-back">
+                                        <img src="Imagenes/Capitulo2_Trasera.jpeg" alt="Otro momento feliz comiendo juntos" id="img-burgers-back" loading="eager" fetchpriority="high">
                                         <div class="photo-vignette"></div>
                                         <div class="flip-hint-badge">
                                             <span class="flip-badge-icon">↩️</span>
@@ -2202,11 +2212,11 @@
                                 <div class="flip-card-inner">
                                     <!-- Cara frontal: Foto 1 -->
                                     <div class="flip-card-face flip-card-front">
-                                        <img src="" alt="Nuestra motocicleta en la carretera" id="img-moto-front">
+                                        <img src="Imagenes/Capitulo3_Frontal.jpeg" alt="Nuestra motocicleta en la carretera" id="img-moto-front" loading="eager" fetchpriority="high">
                                         <div class="photo-vignette"></div>
                                         <div class="flip-hint-badge">
-                                            <span class="flip-badge-icon">🔄</span>
-                                            <span>Toca para girar</span>
+                                             <span class="flip-badge-icon">🔄</span>
+                                             <span>Toca para girar</span>
                                         </div>
                                         <div class="photo-tag-overlay">
                                             <span id="tag-moto-front">🏍️ El viento y tú abrazándome fuerte</span>
@@ -2214,7 +2224,7 @@
                                     </div>
                                     <!-- Cara trasera: Foto 2 -->
                                     <div class="flip-card-face flip-card-back">
-                                        <img src="" alt="Rodando juntos en la moto" id="img-moto-back">
+                                        <img src="Imagenes/Capitulo3_Trasera.jpeg" alt="Rodando juntos en la moto" id="img-moto-back" loading="eager" fetchpriority="high">
                                         <div class="photo-vignette"></div>
                                         <div class="flip-hint-badge">
                                             <span class="flip-badge-icon">↩️</span>
@@ -2245,7 +2255,7 @@
 
                     <!-- Cinema Theater Video Container -->
                     <div class="cinema-theater-box">
-                        <video controls playsinline webkit-playsinline x5-playsinline preload="metadata" poster="Imagenes/video_poster.jpg" id="main-video">
+                        <video controls playsinline webkit-playsinline x5-playsinline preload="auto" poster="Imagenes/video_poster.jpg" id="main-video">
                             <source src="videoFinal.mp4" type="video/mp4" id="main-video-src">
                             Tu navegador no soporta video HTML5.
                         </video>
@@ -2281,7 +2291,7 @@
                 <!-- Polaroid 1: Playa -->
                 <div class="polaroid-card deck-pos-1" data-id="1">
                     <div class="polaroid-photo-box">
-                        <img src="" alt="Recuerdo de la playa" id="polaroid-img-1">
+                        <img src="Imagenes/Capitulo1_Frontal.jpeg" alt="Recuerdo de la playa" id="polaroid-img-1" loading="eager">
                     </div>
                     <div class="polaroid-caption">Aquel día en el mar ✨</div>
                 </div>
@@ -2289,7 +2299,7 @@
                 <!-- Polaroid 2: Hamburguesas -->
                 <div class="polaroid-card deck-pos-2" data-id="2">
                     <div class="polaroid-photo-box">
-                        <img src="" alt="Recuerdo de hamburguesa" id="polaroid-img-2">
+                        <img src="Imagenes/Capitulo2_Frontal.jpeg" alt="Recuerdo de hamburguesa" id="polaroid-img-2" loading="eager">
                     </div>
                     <div class="polaroid-caption">Nuestra mejor cena 🍔</div>
                 </div>
@@ -2297,7 +2307,7 @@
                 <!-- Polaroid 3: Moto -->
                 <div class="polaroid-card deck-pos-3" data-id="3">
                     <div class="polaroid-photo-box">
-                        <img src="" alt="Recuerdo en la moto" id="polaroid-img-3">
+                        <img src="Imagenes/Capitulo3_Frontal.jpeg" alt="Recuerdo en la moto" id="polaroid-img-3" loading="eager">
                     </div>
                     <div class="polaroid-caption">Rumbo al horizonte 🏍️</div>
                 </div>
@@ -2552,6 +2562,71 @@
                     console.warn("Aviso en decodificación de video:", mainVideo.error);
                 });
             }
+
+            // =========================================================================
+            // 🚀 MOTOR DE PRECARGA EN SEGUNDO PLANO (IMÁGENES Y VIDEO)
+            // Se ejecuta activamente mientras la persona está en la pantalla de clave o pistas.
+            // =========================================================================
+            let mediaPreloadTriggered = false;
+            function startBackgroundMediaPreload() {
+                if (mediaPreloadTriggered) return;
+                mediaPreloadTriggered = true;
+
+                // 1. Precarga anticipada y decodificación asíncrona en memoria GPU de todas las fotos
+                const imagesToWarmUp = [
+                    CONFIG.photos.beach.front,
+                    CONFIG.photos.beach.back,
+                    CONFIG.photos.burgers.front,
+                    CONFIG.photos.burgers.back,
+                    CONFIG.photos.moto.front,
+                    CONFIG.photos.moto.back,
+                    CONFIG.video.poster
+                ];
+
+                imagesToWarmUp.forEach(src => {
+                    if (!src) return;
+                    const preImg = new Image();
+                    preImg.src = src;
+                    // decode() descomprime los bytes en un bitmap en memoria gráfica
+                    if (typeof preImg.decode === 'function') {
+                        preImg.decode().catch(() => {});
+                    }
+                });
+
+                // 2. Precarga activa del video (7.59 MB) en el caché HTTP / memoria local
+                if (CONFIG.video && CONFIG.video.src) {
+                    if (mainVideo) {
+                        mainVideo.preload = "auto";
+                    }
+
+                    // Descarga en segundo plano al caché del navegador
+                    try {
+                        fetch(CONFIG.video.src, { cache: 'force-cache' })
+                            .then(res => {
+                                if (res.ok) return res.blob();
+                            })
+                            .then(blob => {
+                                // Si se descargó completo en memoria, creamos un ObjectURL
+                                // para reproducción con 0ms de latencia
+                                if (blob && mainVideo && blob.size > 500000) {
+                                    const objectUrl = URL.createObjectURL(blob);
+                                    mainVideo.src = objectUrl;
+                                    if (mainVideoSrc) mainVideoSrc.src = objectUrl;
+                                }
+                            })
+                            .catch(() => {
+                                // Si fetch no está disponible (ej. file://), el navegador usa su preload="auto" nativo
+                            });
+                    } catch (e) {}
+                }
+            }
+
+            // Iniciar precarga de imágenes y video de inmediato al cargar la página
+            startBackgroundMediaPreload();
+
+            // Garantizar activación en cualquier interacción táctil temprana (mientras escribe o pide pistas)
+            window.addEventListener('pointerdown', startBackgroundMediaPreload, { once: true, passive: true });
+            window.addEventListener('keydown', startBackgroundMediaPreload, { once: true, passive: true });
 
             // Anniversary Label
             const anniversaryDisplay = document.getElementById('anniversary-display');
