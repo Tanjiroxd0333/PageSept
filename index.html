@@ -905,6 +905,7 @@
         .cinema-theater-box video {
             width: 100%;
             height: auto;
+            aspect-ratio: 16 / 9;
             max-height: 540px;
             display: block;
             object-fit: cover;
@@ -2244,7 +2245,7 @@
 
                     <!-- Cinema Theater Video Container -->
                     <div class="cinema-theater-box">
-                        <video controls playsinline preload="metadata" poster="Imagenes/video_poster.jpg" id="main-video">
+                        <video controls playsinline webkit-playsinline x5-playsinline preload="metadata" poster="Imagenes/video_poster.jpg" id="main-video">
                             <source src="videoFinal.mp4" type="video/mp4" id="main-video-src">
                             Tu navegador no soporta video HTML5.
                         </video>
@@ -2518,9 +2519,10 @@
             const mainVideo = document.getElementById('main-video');
             const mainVideoSrc = document.getElementById('main-video-src');
             if (mainVideo) {
-                mainVideo.poster = CONFIG.video.poster;
-                if (mainVideoSrc) mainVideoSrc.src = CONFIG.video.src;
-                mainVideo.load();
+                if (CONFIG.video && CONFIG.video.poster) mainVideo.poster = CONFIG.video.poster;
+                if (mainVideoSrc && CONFIG.video && CONFIG.video.src && mainVideoSrc.getAttribute('src') !== CONFIG.video.src) {
+                    mainVideoSrc.src = CONFIG.video.src;
+                }
 
                 // Al iniciar el video, pausar la música de fondo si estaba sonando
                 mainVideo.addEventListener('play', () => {
@@ -2544,6 +2546,11 @@
 
                 mainVideo.addEventListener('pause', resumeMusic);
                 mainVideo.addEventListener('ended', resumeMusic);
+
+                // Manejo de advertencias en consola para diagnosticar dispositivos
+                mainVideo.addEventListener('error', (e) => {
+                    console.warn("Aviso en decodificación de video:", mainVideo.error);
+                });
             }
 
             // Anniversary Label
