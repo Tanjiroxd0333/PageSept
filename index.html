@@ -1484,61 +1484,80 @@
 
         /* Modal Romántico de Pistas */
         .hint-modal-overlay {
-            position: absolute;
+            position: fixed;
             inset: 0;
-            z-index: 1000010;
-            background: rgba(18, 13, 23, 0.97);
+            z-index: 1000050;
+            background: rgba(8, 5, 12, 0.88);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            border-radius: calc(2.25rem - 0.5rem);
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 2rem 1.6rem;
-            animation: hint-modal-in 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            padding: 1.25rem 1rem;
+            animation: hint-modal-in 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
         }
 
         @keyframes hint-modal-in {
-            0% { opacity: 0; transform: scale(0.94); }
+            0% { opacity: 0; transform: scale(0.95); }
             100% { opacity: 1; transform: scale(1); }
         }
 
         .hint-modal-card {
             width: 100%;
+            max-width: 470px;
+            max-height: min(90dvh, 680px);
             display: flex;
             flex-direction: column;
-            align-items: center;
-            text-align: center;
+            background: linear-gradient(165deg, #1d1424 0%, #130d19 100%);
+            border: 1px solid rgba(226, 125, 142, 0.38);
+            border-radius: 1.85rem;
+            box-shadow: 0 25px 65px rgba(0, 0, 0, 0.9), 0 0 45px rgba(226, 125, 142, 0.22);
+            padding: 1.75rem 1.35rem 1.35rem;
             position: relative;
+            margin: auto;
         }
 
         .hint-modal-close-x {
             position: absolute;
-            top: -0.85rem;
-            right: -0.65rem;
+            top: 1rem;
+            right: 1.1rem;
             background: rgba(255, 255, 255, 0.08);
             border: 1px solid rgba(255, 255, 255, 0.15);
-            color: #c7b8c4;
-            width: 32px;
-            height: 32px;
+            color: #d1c2ce;
+            width: 34px;
+            height: 34px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.25rem;
+            font-size: 1.35rem;
+            line-height: 1;
             cursor: pointer;
             transition: all 0.2s ease;
+            z-index: 10;
         }
 
         .hint-modal-close-x:hover {
-            background: rgba(226, 125, 142, 0.25);
+            background: rgba(226, 125, 142, 0.3);
             color: #ffffff;
             transform: scale(1.1);
+            border-color: rgba(226, 125, 142, 0.6);
+        }
+
+        .hint-modal-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            flex-shrink: 0;
+            margin-bottom: 0.85rem;
         }
 
         .hint-modal-icon-wrap {
-            width: 64px;
-            height: 64px;
+            width: 58px;
+            height: 58px;
             border-radius: 50%;
             background: radial-gradient(circle at 35% 35%, rgba(226, 125, 142, 0.35), rgba(201, 24, 74, 0.18));
             border: 1.5px solid rgba(226, 125, 142, 0.45);
@@ -1546,22 +1565,48 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.85rem;
-            margin-bottom: 0.9rem;
-            animation: lock-heartbeat 2s infinite ease-in-out;
+            font-size: 1.75rem;
+            margin-bottom: 0.65rem;
+            animation: lock-heartbeat 2.2s infinite ease-in-out;
         }
 
         .hint-modal-title {
             font-family: 'Playfair Display', Georgia, serif;
-            font-size: clamp(1.2rem, 3.5vw, 1.45rem);
+            font-size: clamp(1.2rem, 3.8vw, 1.4rem);
             color: #fcf9fa;
             line-height: 1.25;
-            margin-bottom: 1.1rem;
+            margin: 0;
+            padding: 0 1.5rem;
         }
 
         .hint-modal-body {
-            width: 100%;
-            margin-bottom: 1.35rem;
+            flex: 1 1 auto;
+            min-height: 0;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            overscroll-behavior: contain;
+            padding: 0.35rem 0.25rem 0.5rem;
+            margin-bottom: 0.75rem;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(226, 125, 142, 0.45) rgba(255, 255, 255, 0.04);
+        }
+
+        .hint-modal-body::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .hint-modal-body::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 9999px;
+        }
+
+        .hint-modal-body::-webkit-scrollbar-thumb {
+            background: rgba(226, 125, 142, 0.45);
+            border-radius: 9999px;
+        }
+
+        .hint-modal-body::-webkit-scrollbar-thumb:hover {
+            background: rgba(226, 125, 142, 0.75);
         }
 
         .hint-req-content {
@@ -1575,7 +1620,7 @@
             border: 1px solid rgba(226, 125, 142, 0.22);
             border-radius: 1.1rem;
             padding: 0.85rem 1rem;
-            font-size: 0.9rem;
+            font-size: 0.88rem;
             color: #f2e9ee;
             line-height: 1.55;
             text-align: center;
@@ -1603,38 +1648,147 @@
         }
 
         .hint-sweet-note {
-            font-size: 0.8rem;
+            font-size: 0.82rem;
             color: #c7b8c4;
             font-style: italic;
-            margin-top: 0.2rem;
+            margin-top: 0.35rem;
             line-height: 1.45;
+            text-align: center;
         }
 
-        .hint-card-item {
-            background: linear-gradient(135deg, rgba(226, 125, 142, 0.16), rgba(20, 15, 25, 0.88));
-            border: 1px solid rgba(226, 125, 142, 0.45);
+        /* Accordion Cards para Adivinanzas */
+        .hint-accordion {
+            background: linear-gradient(135deg, rgba(226, 125, 142, 0.12), rgba(25, 18, 30, 0.9));
+            border: 1px solid rgba(226, 125, 142, 0.35);
             border-radius: 1.15rem;
-            padding: 1rem 1.15rem;
-            text-align: left;
             margin-bottom: 0.75rem;
             box-shadow: 0 4px 18px rgba(0, 0, 0, 0.45);
+            overflow: hidden;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
         }
 
-        .hint-card-tag {
-            font-size: 0.76rem;
-            text-transform: uppercase;
-            letter-spacing: 0.12em;
-            font-weight: 700;
-            color: #e5b98f;
-            margin-bottom: 0.5rem;
+        .hint-accordion:hover {
+            border-color: rgba(226, 125, 142, 0.6);
+            box-shadow: 0 6px 22px rgba(226, 125, 142, 0.2);
+        }
+
+        .hint-accordion[open] {
+            background: linear-gradient(135deg, rgba(226, 125, 142, 0.18), rgba(28, 19, 35, 0.96));
+            border-color: rgba(226, 125, 142, 0.65);
+            box-shadow: 0 8px 28px rgba(226, 125, 142, 0.25);
+        }
+
+        .hint-accordion-header {
+            list-style: none;
             display: flex;
             align-items: center;
-            gap: 0.4rem;
+            justify-content: space-between;
+            padding: 0.85rem 1rem;
+            cursor: pointer;
+            user-select: none;
+            gap: 0.65rem;
+            transition: background 0.2s ease;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+        }
+
+        .hint-accordion-header::-webkit-details-marker,
+        .hint-accordion-header::marker {
+            display: none;
+        }
+
+        .hint-accordion-header:focus {
+            outline: none;
+        }
+
+        .hint-accordion-header:focus-visible {
+            outline: 2px solid rgba(226, 125, 142, 0.6);
+            outline-offset: -2px;
+        }
+
+        .hint-accordion-header:hover {
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        .hint-accordion-header:active {
+            transform: scale(0.99);
+        }
+
+        .hint-accordion-title-wrap {
+            display: flex;
+            align-items: center;
+            gap: 0.55rem;
+            text-align: left;
+            flex: 1;
+            min-width: 0;
+        }
+
+        .hint-accordion-icon {
+            font-size: 1.15rem;
+            flex-shrink: 0;
+        }
+
+        .hint-accordion-title {
+            font-size: 0.82rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: #e5b98f;
+            line-height: 1.35;
+        }
+
+        .hint-accordion-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            font-size: 0.72rem;
+            font-weight: 600;
+            color: #f7cbd4;
+            background: rgba(226, 125, 142, 0.18);
+            border: 1px solid rgba(226, 125, 142, 0.3);
+            padding: 0.25rem 0.65rem;
+            border-radius: 9999px;
+            flex-shrink: 0;
+            transition: all 0.25s ease;
+        }
+
+        .hint-accordion-chevron {
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            color: #e27d8e;
+        }
+
+        .hint-accordion[open] .hint-accordion-chevron {
+            transform: rotate(180deg);
+            color: #ffffff;
+        }
+
+        .hint-accordion[open] .hint-accordion-badge {
+            background: rgba(226, 125, 142, 0.35);
+            border-color: rgba(226, 125, 142, 0.65);
+            color: #ffffff;
+        }
+
+        .hint-accordion .hint-action-open { display: inline; }
+        .hint-accordion .hint-action-close { display: none; }
+
+        .hint-accordion[open] .hint-action-open { display: none; }
+        .hint-accordion[open] .hint-action-close { display: inline; }
+
+        .hint-accordion-body {
+            padding: 0.4rem 1.15rem 1.15rem 1.15rem;
+            text-align: left;
+            border-top: 1px dashed rgba(226, 125, 142, 0.22);
+            animation: hint-card-reveal 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes hint-card-reveal {
+            0% { opacity: 0; transform: translateY(-6px); }
+            100% { opacity: 1; transform: translateY(0); }
         }
 
         .hint-card-riddle {
             font-family: 'Cormorant Garamond', Georgia, serif;
-            font-size: 1.16rem;
+            font-size: 1.12rem;
             color: #ffffff;
             line-height: 1.55;
             font-style: italic;
@@ -1645,13 +1799,16 @@
             font-size: 0.84rem;
             color: #e27d8e;
             font-weight: 500;
-            line-height: 1.4;
-            padding-top: 0.45rem;
+            line-height: 1.45;
+            padding-top: 0.5rem;
             border-top: 1px dashed rgba(226, 125, 142, 0.25);
         }
 
         .hint-modal-footer {
             width: 100%;
+            flex-shrink: 0;
+            padding-top: 0.75rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
         }
 
         .hint-modal-confirm-btn {
@@ -1661,8 +1818,8 @@
             color: #ffffff;
             font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
             font-weight: 600;
-            font-size: 0.92rem;
-            padding: 0.75rem 1.4rem;
+            font-size: 0.95rem;
+            padding: 0.8rem 1.4rem;
             border-radius: 9999px;
             cursor: pointer;
             box-shadow: 0 4px 18px rgba(201, 24, 74, 0.5);
@@ -1748,24 +1905,26 @@
                         <span id="hint-status-dot" class="hint-status-dot" style="display: none;"></span>
                     </button>
                 </div>
+            </div>
+        </div>
 
-                <!-- Modal Romántico de Pistas (Solicitud de Besos/Abrazos o Pistas Desbloqueadas) -->
-                <div id="hint-modal" class="hint-modal-overlay" style="display: none;" role="dialog" aria-modal="true" aria-labelledby="hint-modal-title">
-                    <div class="hint-modal-card">
-                        <button type="button" id="btn-close-hint-x" class="hint-modal-close-x" aria-label="Cerrar modal de pistas">×</button>
-                        <div class="hint-modal-icon-wrap" id="hint-modal-icon">
-                            <span>💋</span>
-                        </div>
-                        <h3 class="hint-modal-title" id="hint-modal-title">¿Necesitas una pista, mi amor?</h3>
-                        <div id="hint-modal-body" class="hint-modal-body">
-                            <!-- Contenido inyectado dinámicamente según nivel de pista -->
-                        </div>
-                        <div class="hint-modal-footer">
-                            <button type="button" id="btn-close-hint" class="hint-modal-confirm-btn">
-                                <span>¡Entendido! ❤️</span>
-                            </button>
-                        </div>
+        <!-- Modal Romántico de Pistas (Solicitud de Besos/Abrazos o Pistas Desbloqueadas) -->
+        <div id="hint-modal" class="hint-modal-overlay" style="display: none;" role="dialog" aria-modal="true" aria-labelledby="hint-modal-title">
+            <div class="hint-modal-card">
+                <button type="button" id="btn-close-hint-x" class="hint-modal-close-x" aria-label="Cerrar modal de pistas">×</button>
+                <div class="hint-modal-header">
+                    <div class="hint-modal-icon-wrap" id="hint-modal-icon">
+                        <span>💋</span>
                     </div>
+                    <h3 class="hint-modal-title" id="hint-modal-title">¿Necesitas una pista, mi amor?</h3>
+                </div>
+                <div id="hint-modal-body" class="hint-modal-body">
+                    <!-- Contenido inyectado dinámicamente según nivel de pista -->
+                </div>
+                <div class="hint-modal-footer">
+                    <button type="button" id="btn-close-hint" class="hint-modal-confirm-btn">
+                        <span>¡Entendido! ❤️</span>
+                    </button>
                 </div>
             </div>
         </div>
@@ -2849,19 +3008,33 @@
                     hintModalBody.innerHTML = `
                         <div class="hint-req-content">
                             <p class="hint-sweet-rule" style="background: rgba(226, 125, 142, 0.18); border-color: rgba(226, 125, 142, 0.5);">
-                                ✨ <em>¡Beso o abrazo concedido con amor! Aquí tienes tu primer acertijo:</em>
+                                ✨ <em>¡Beso o abrazo concedido con amor! Toca la tarjeta para ver tu primer acertijo:</em>
                             </p>
-                            <div class="hint-card-item">
-                                <div class="hint-card-tag">🧩 Adivinanza 1: La Forma del Secreto</div>
-                                <div class="hint-card-riddle">
-                                    «No vengo sola al mundo porque el amor verdadero siempre florece en pareja, pero tampoco soy un largo cuento que cansa a quien la queja.<br><br>
-                                    Si cuentas cuántas partes me forman al hablar, hallarás el número exacto que tú y yo solemos sumar.<br>
-                                    ¿Cuántas palabras componen la llave de este cofre?»
+                            <details class="hint-accordion" open>
+                                <summary class="hint-accordion-header">
+                                    <div class="hint-accordion-title-wrap">
+                                        <span class="hint-accordion-icon">🧩</span>
+                                        <span class="hint-accordion-title">Adivinanza 1: La Forma del Secreto</span>
+                                    </div>
+                                    <div class="hint-accordion-badge">
+                                        <span class="hint-action-open">Toca para ver</span>
+                                        <span class="hint-action-close">Ocultar</span>
+                                        <svg class="hint-accordion-chevron" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                            <polyline points="6 9 12 15 18 9"></polyline>
+                                        </svg>
+                                    </div>
+                                </summary>
+                                <div class="hint-accordion-body">
+                                    <div class="hint-card-riddle">
+                                        «No vengo sola al mundo porque el amor verdadero siempre florece en pareja, pero tampoco soy un largo cuento que cansa a quien la queja.<br><br>
+                                        Si cuentas cuántas partes me forman al hablar, hallarás el número exacto que tú y yo solemos sumar.<br>
+                                        ¿Cuántas palabras componen la llave de este cofre?»
+                                    </div>
+                                    <div class="hint-card-clue">
+                                        💡 <em>Pista: Ni una sola, ni tres... somos exactamente un par de palabras hechas a nuestra medida.</em>
+                                    </div>
                                 </div>
-                                <div class="hint-card-clue">
-                                    💡 <em>Pista: Ni una sola, ni tres... somos exactamente un par de palabras hechas a nuestra medida.</em>
-                                </div>
-                            </div>
+                            </details>
                             <p class="hint-sweet-note">
                                 ¿Aún no sabes cuáles son? Pídele la segunda adivinanza con otro beso o abrazo... 😉❤️
                             </p>
@@ -2873,30 +3046,63 @@
                     hintModalBody.innerHTML = `
                         <div class="hint-req-content">
                             <p class="hint-sweet-rule" style="background: rgba(226, 125, 142, 0.18); border-color: rgba(226, 125, 142, 0.5);">
-                                ✨ <em>¡Todo el amor recibido! Tienes los dos acertijos para abrir el cofre:</em>
+                                ✨ <em>¡Todo el amor recibido! Tienes los dos acertijos para abrir el cofre. Toca cada tarjeta para ver la información:</em>
                             </p>
-                            <div class="hint-card-item">
-                                <div class="hint-card-tag">🧩 Adivinanza 1: La Forma del Secreto</div>
-                                <div class="hint-card-riddle">
-                                    «No vengo sola al mundo porque el amor verdadero siempre florece en pareja, pero tampoco soy un largo cuento que cansa a quien la queja.<br><br>
-                                    Si cuentas cuántas partes me forman al hablar, hallarás el número exacto que tú y yo solemos sumar.<br>
-                                    ¿Cuántas palabras componen la llave de este cofre?»
+                            
+                            <!-- Card 1 -->
+                            <details class="hint-accordion">
+                                <summary class="hint-accordion-header">
+                                    <div class="hint-accordion-title-wrap">
+                                        <span class="hint-accordion-icon">🧩</span>
+                                        <span class="hint-accordion-title">Adivinanza 1: La Forma del Secreto</span>
+                                    </div>
+                                    <div class="hint-accordion-badge">
+                                        <span class="hint-action-open">Toca para ver</span>
+                                        <span class="hint-action-close">Ocultar</span>
+                                        <svg class="hint-accordion-chevron" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                            <polyline points="6 9 12 15 18 9"></polyline>
+                                        </svg>
+                                    </div>
+                                </summary>
+                                <div class="hint-accordion-body">
+                                    <div class="hint-card-riddle">
+                                        «No vengo sola al mundo porque el amor verdadero siempre florece en pareja, pero tampoco soy un largo cuento que cansa a quien la queja.<br><br>
+                                        Si cuentas cuántas partes me forman al hablar, hallarás el número exacto que tú y yo solemos sumar.<br>
+                                        ¿Cuántas palabras componen la llave de este cofre?»
+                                    </div>
+                                    <div class="hint-card-clue">
+                                        💡 <em>Pista: Ni una sola, ni tres... somos exactamente un par de palabras hechas a nuestra medida.</em>
+                                    </div>
                                 </div>
-                                <div class="hint-card-clue">
-                                    💡 <em>Pista: Ni una sola, ni tres... somos exactamente un par de palabras hechas a nuestra medida.</em>
+                            </details>
+
+                            <!-- Card 2 -->
+                            <details class="hint-accordion" open>
+                                <summary class="hint-accordion-header">
+                                    <div class="hint-accordion-title-wrap">
+                                        <span class="hint-accordion-icon">📸</span>
+                                        <span class="hint-accordion-title">Adivinanza 2: El Lugar Donde Me Escondo</span>
+                                    </div>
+                                    <div class="hint-accordion-badge">
+                                        <span class="hint-action-open">Toca para ver</span>
+                                        <span class="hint-action-close">Ocultar</span>
+                                        <svg class="hint-accordion-chevron" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                            <polyline points="6 9 12 15 18 9"></polyline>
+                                        </svg>
+                                    </div>
+                                </summary>
+                                <div class="hint-accordion-body">
+                                    <div class="hint-card-riddle">
+                                        «Tengo un logo con colores de atardecer, donde las fotos vuelan y las historias duran solo un amanecer.<br><br>
+                                        En un rincón especial de tu propio perfil me dejaste grabada en letras para que no te olvidaras de mí.<br>
+                                        ¿En qué aplicación está escrita la promesa que hoy te hará sonreír?»
+                                    </div>
+                                    <div class="hint-card-clue">
+                                        📸 <em>Pista: La red social de los corazones rojos, las historias y tu biografía...</em>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="hint-card-item">
-                                <div class="hint-card-tag">🧩 Adivinanza 2: El Lugar Donde Me Escondo</div>
-                                <div class="hint-card-riddle">
-                                    «Tengo un logo con colores de atardecer, donde las fotos vuelan y las historias duran solo un amanecer.<br><br>
-                                    En un rincón especial de tu propio perfil me dejaste grabada en letras para que no te olvidaras de mí.<br>
-                                    ¿En qué aplicación está escrita la promesa que hoy te hará sonreír?»
-                                </div>
-                                <div class="hint-card-clue">
-                                    📸 <em>Pista: La red social de los corazones rojos, las historias y tu biografía...</em>
-                                </div>
-                            </div>
+                            </details>
+
                             <p class="hint-sweet-note">
                                 ¡Une las dos adivinanzas y escribe la frase para abrir nuestro cofre! 💖
                             </p>
@@ -2925,6 +3131,27 @@
             if (btnRequestHint) btnRequestHint.addEventListener('click', openHintModal);
             if (btnCloseHint) btnCloseHint.addEventListener('click', closeHintModal);
             if (btnCloseHintX) btnCloseHintX.addEventListener('click', closeHintModal);
+
+            // Cerrar al hacer clic en el fondo difuminado exterior
+            if (hintModal) {
+                hintModal.addEventListener('click', (e) => {
+                    if (e.target === hintModal) {
+                        closeHintModal();
+                    }
+                });
+            }
+
+            // Cerrar al presionar la tecla Escape
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && hintModal && hintModal.style.display !== 'none') {
+                    closeHintModal();
+                }
+            });
+
+            // Abrir automáticamente si se solicita en la URL (para testing y accesos directos)
+            if (urlParams.has('modal') || urlParams.has('pista_abierta')) {
+                setTimeout(openHintModal, 150);
+            }
 
             // MODO ADMINISTRADOR: Activar pistas desde el celular del novio
             async function handleAdminCommand(rawVal) {
